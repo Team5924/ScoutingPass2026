@@ -18,6 +18,7 @@ function setUpGoogleSheets() {
       fetch(scriptURL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        mode: 'no-cors',
         body: JSON.stringify(fd)
       })
         .then(response => { 
