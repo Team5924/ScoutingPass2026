@@ -923,6 +923,19 @@ function getData(dataFormat) {
       str.push(fd.get(thisKey))
     });
     return str.join("\t")
+  } else if (dataFormat === "json") {
+    const obj = {};
+    UniqueFieldNames.forEach((fieldname) => {
+      var thisField = Form[fieldname];
+      let value;
+      if (thisField.type === 'checkbox') {
+        value = thisField.checked ? checkedChar : uncheckedChar;
+      } else {
+        value = thisField.value ? thisField.value.replace(/"/g, '').replace(/;/g,"-") : "";
+      }
+      obj[fieldname] = value;
+    });
+    return obj; // returns a plain JS object
   } else {
     return "unsupported dataFormat"
   }
