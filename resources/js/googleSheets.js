@@ -9,12 +9,17 @@ function setUpGoogleSheets() {
       btn.disabled = false
       btn.innerHTML = "Sending..."
 
-      let fd = getData(true)
+      let fd = Object.fromEntries(getData(false));
       for (const [key, value] of fd) {
         console.log(`${key}: ${value}\n`);
       }
 
-      fetch(scriptURL, { method: 'POST', mode: 'no-cors', body: fd })
+      fetch(scriptURL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { "Content-Type": "application/json" }, 
+        body: JSON.stringify(fd) 
+      })
         .then(response => { 
               alert('Success!', response) })
         .catch(error => {
