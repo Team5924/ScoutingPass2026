@@ -9,7 +9,7 @@ function setUpGoogleSheets() {
       btn.disabled = false
       btn.innerHTML = "Sending..."
 
-      let fd = Object.fromEntries(getData(false));
+      let fd = getData("tsv");
       for (const [key, value] of fd) {
         console.log(`${key}: ${value}\n`);
       }
@@ -17,8 +17,7 @@ function setUpGoogleSheets() {
       fetch(scriptURL, {
         method: 'POST',
         mode: 'no-cors',
-        headers: { "Content-Type": "application/json" }, 
-        body: JSON.stringify(fd) 
+        body: fd 
       })
         .then(response => { 
               alert('Success!', response) })
