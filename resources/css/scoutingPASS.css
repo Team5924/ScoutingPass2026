@@ -1,9 +1,25 @@
 @font-face {
-    font-family: 'Alexis';
-    font-style: normal;
-    font-weight: normal;
-    src: local('Alexis'), url('../fonts/alex.woff') format('woff');
-    src: url("../fonts/alexisv3.ttf") format('truetype');
+  font-family: 'Roboto';
+  src: url('./fonts/Roboto-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('./fonts/Roboto-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('./fonts/Roboto-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
 }
 
 html, body{
@@ -13,11 +29,12 @@ html, body{
     padding: 0;
     color: white;
     background-color: black;
+    font-family: 'Roboto', sans-serif;
 }
 
 #prematch_table, #postmatch_table {
 
-    font-family : -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
+    font-family : Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
     text-align: center;
     color: white;
     font-size: 13px;
@@ -28,7 +45,7 @@ html, body{
 }
 
 #auton_table, #endgame_table, #teleop_table {
-    font-family : -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
+    font-family : Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
     color: black;
     font-size: 13px;
     font-style: bold;
@@ -38,7 +55,7 @@ html, body{
 }
 
 .button {
-    font-family: Alexis;
+    font-family: 'Roboto';
     font-size: 16px;
 }
 
@@ -82,7 +99,7 @@ html, body{
     top: 0;
     color: white;
     background-color: black;
-    font-family : -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
+    font-family : Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
     text-align: justify;
 }
 
@@ -108,7 +125,7 @@ html, body{
 }
 
 h1{
-    font-family: Alexis;
+    font-family: 'Roboto';
     text-align: center;
     border-style: groove;
     border-color: white;
@@ -123,7 +140,7 @@ h1{
 }
 
 h2{
-    font-family: Alexis;
+    font-family: 'Roboto';
     text-align: center;
     font-size: 30px;
     font-weight: 300;
@@ -154,7 +171,7 @@ h2{
 }
 
 #nextButton1, #nextButton2, #nextButton9, #nextButton10, .clearForm, .submitForm, #displayButton, #copyButton {
-    font-family: Alexis;
+    font-family: 'Roboto';
     padding: 10px;
     background-color: rgb(151, 199, 240);
     text-decoration: none;
@@ -162,14 +179,14 @@ h2{
 }
 
 #nextButton3, #nextButton4, #nextButton5, #nextButton6, #nextButton7, #nextButton8 {
-    font-family: Alexis;
+    font-family: 'Roboto';
     background-color: black;
     padding: 10px;
     color: white;
 }
 
 .undoButton, .flipButton {
-    font-family: Alexis;
+    font-family: 'Roboto';
     background-color: black;
     padding: 10px;
     color: white;
@@ -177,13 +194,13 @@ h2{
 }
 
 #prevButton7, #prevButton8, #prevButton9{
-    font-family: Alexis;
+    font-family: 'Roboto';
     background-color: rgb(151, 199, 240);
     padding: 10px;
 }
 
 #prevButton1, #prevButton2, #prevButton3, #prevButton4, #prevButton5, #prevButton6{
-    font-family: Alexis;
+    font-family: 'Roboto';
     background-color: black;
     padding: 10px;
     color: white;
@@ -191,19 +208,19 @@ h2{
 }
 
 #prematch_table{
-    font: Alexis;
+    font: 'Roboto';
     text-align: center;
 }
 
 
 h1 .odd {
-    font-family: Alexis;
+    font-family: 'Roboto';
     text-align: center;
     color: #0AB4EC;
 }
 
 h1 .even {
-    font-family: Alexis;
+    font-family: 'Roboto';
     text-align: center;
     color: #42B333;
 }
