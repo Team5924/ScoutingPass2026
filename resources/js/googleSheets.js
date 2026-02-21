@@ -10,11 +10,6 @@ function setUpGoogleSheets() {
       btn.innerHTML = "Sending..."
 
       let fd = getData("tsv");
-      // for (const [key, value] of fd) {
-      //   console.log(`${key}: ${value}\n`);
-      // }
-
-      // let fd = getData("tsv");           // returns object
       fetch(scriptURL, {
         method: "POST",
         mode: 'no-cors',
