@@ -39,6 +39,7 @@ html, body{
     color: white;
     font-size: 13px;
     font-style: bold;
+    font-weight: 700;
     letter-spacing: 1px;
     border-width: 4px;
     border-color: white;
@@ -49,6 +50,7 @@ html, body{
     color: black;
     font-size: 13px;
     font-style: bold;
+    font-weight: 700;
     letter-spacing: 1px;
     border-width: 4px;
     border-color: black;
@@ -57,6 +59,7 @@ html, body{
 .button {
     font-family: 'Roboto';
     font-size: 16px;
+    font-weight: 500;
 }
 
 #autonHeader, #endgameHeader, #teleopHeader1, #teleopHeader2{
@@ -132,7 +135,7 @@ h1{
     border-width: 2px;
     font-size: 40px;
     padding: 10px;
-    font-weight: 350;
+    font-weight: 500;
 }
 
 #page2, #page4 {
@@ -143,7 +146,7 @@ h2{
     font-family: 'Roboto';
     text-align: center;
     font-size: 30px;
-    font-weight: 300;
+    font-weight: 400;
     font-style: italic;
 }
 
@@ -172,6 +175,7 @@ h2{
 
 #nextButton1, #nextButton2, #nextButton9, #nextButton10, .clearForm, .submitForm, #displayButton, #copyButton {
     font-family: 'Roboto';
+    font-weight: 500;
     padding: 10px;
     background-color: rgb(151, 199, 240);
     text-decoration: none;
@@ -180,6 +184,7 @@ h2{
 
 #nextButton3, #nextButton4, #nextButton5, #nextButton6, #nextButton7, #nextButton8 {
     font-family: 'Roboto';
+    font-weight: 500;
     background-color: black;
     padding: 10px;
     color: white;
@@ -187,6 +192,7 @@ h2{
 
 .undoButton, .flipButton {
     font-family: 'Roboto';
+    font-weight: 500;
     background-color: black;
     padding: 10px;
     color: white;
@@ -195,12 +201,14 @@ h2{
 
 #prevButton7, #prevButton8, #prevButton9{
     font-family: 'Roboto';
+    font-weight: 500;
     background-color: rgb(151, 199, 240);
     padding: 10px;
 }
 
 #prevButton1, #prevButton2, #prevButton3, #prevButton4, #prevButton5, #prevButton6{
     font-family: 'Roboto';
+    font-weight: 500;
     background-color: black;
     padding: 10px;
     color: white;
@@ -209,18 +217,21 @@ h2{
 
 #prematch_table{
     font: 'Roboto';
+    font-weight: 500;
     text-align: center;
 }
 
 
 h1 .odd {
     font-family: 'Roboto';
+    font-weight: 500;
     text-align: center;
     color: #0AB4EC;
 }
 
 h1 .even {
     font-family: 'Roboto';
+    font-weight: 500;
     text-align: center;
     color: #42B333;
 }
