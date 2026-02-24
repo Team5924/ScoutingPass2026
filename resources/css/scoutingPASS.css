@@ -1,4 +1,4 @@
-@font-face {
+/* @font-face {
   font-family: 'Roboto';
   src: url('./fonts/Roboto-Regular.ttf') format('truetype');
   font-weight: 400;
@@ -20,23 +20,23 @@
   font-weight: 700;
   font-style: normal;
   font-display: swap;
-}
+} */
 
-@font-face {
+/* @font-face {
   font-family: 'Bevan';
   src: url('./fonts/Bevan-Regular.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
-}
+} */
 
-@font-face {
+/* @font-face {
   font-family: 'Racing Sans One';
   src: url('./fonts/RacingSansOne-Regular.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
-}
+} */
 
 html, body{
     height: 100%;
@@ -45,7 +45,7 @@ html, body{
     padding: 0;
     color: white;
     background-color: black;
-    font-family: 'Racing Sans One', sans-serif;
+    font-family: Roboto, sans-serif;
 }
 
 #prematch_table, #postmatch_table {
@@ -73,7 +73,7 @@ html, body{
 }
 
 .button {
-    font-family: 'Racing Sans One';
+    font-family: Roboto;
     font-size: 16px;
     font-weight: 500;
 }
@@ -144,7 +144,7 @@ html, body{
 }
 
 h1{
-    font-family: 'Racing Sans One';
+    font-family: Roboto;
     text-align: center;
     border-style: groove;
     border-color: white;
@@ -159,7 +159,7 @@ h1{
 }
 
 h2{
-    font-family: 'Racing Sans One';
+    font-family: Roboto;
     text-align: center;
     font-size: 30px;
     font-weight: 400;
@@ -190,7 +190,7 @@ h2{
 }
 
 #nextButton1, #nextButton2, #nextButton9, #nextButton10, .clearForm, .submitForm, #displayButton, #copyButton {
-    font-family: 'Racing Sans One';
+    font-family: Roboto;
     font-weight: 500;
     padding: 10px;
     background-color: rgb(151, 199, 240);
@@ -199,7 +199,7 @@ h2{
 }
 
 #nextButton3, #nextButton4, #nextButton5, #nextButton6, #nextButton7, #nextButton8 {
-    font-family: 'Racing Sans One';
+    font-family: Roboto;
     font-weight: 500;
     background-color: black;
     padding: 10px;
@@ -207,7 +207,7 @@ h2{
 }
 
 .undoButton, .flipButton {
-    font-family: 'Racing Sans One';
+    font-family: Roboto;
     font-weight: 500;
     background-color: black;
     padding: 10px;
@@ -216,14 +216,14 @@ h2{
 }
 
 #prevButton7, #prevButton8, #prevButton9{
-    font-family: 'Racing Sans One';
+    font-family: Roboto;
     font-weight: 500;
     background-color: rgb(151, 199, 240);
     padding: 10px;
 }
 
 #prevButton1, #prevButton2, #prevButton3, #prevButton4, #prevButton5, #prevButton6{
-    font-family: 'Racing Sans One';
+    font-family: Roboto;
     font-weight: 500;
     background-color: black;
     padding: 10px;
@@ -232,21 +232,21 @@ h2{
 }
 
 #prematch_table{
-    font: 'Racing Sans One';
+    font: Roboto;
     font-weight: 500;
     text-align: center;
 }
 
 
 h1 .odd {
-    font-family: 'Racing Sans One';
+    font-family: Roboto;
     font-weight: 500;
     text-align: center;
     color: #0AB4EC;
 }
 
 h1 .even {
-    font-family: 'Racing Sans One';
+    font-family: Roboto;
     font-weight: 500;
     text-align: center;
     color: #42B333;
