@@ -195,7 +195,7 @@ var config_data = `
       "choices": {
         "0": "Not Effective<br>",
         "1": "Average<br>",
-        "2": "Very Effective<br>"
+        "2": "Very Effective<br>",
         "x": "Did not play defense"
       },
       "defaultValue": "x"
