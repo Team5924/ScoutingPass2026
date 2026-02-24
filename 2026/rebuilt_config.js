@@ -92,7 +92,7 @@ var config_data = `
       "code": "ac",
       "type": "radio",
       "choices": {
-        "c": "Climbed<br>",
+        "15": "Climbed<br>",
         "a": "Attempted<br>",
         "x": "Not Attempted"
       },
@@ -160,15 +160,15 @@ var config_data = `
       "code": "tc",
       "type": "radio",
       "choices": {
-        "1": "Level 1<br>",
-        "2": "Level 2<br>",
-        "3": "Level 3<br>",
+        "10": "Level 1<br>",
+        "20": "Level 2<br>",
+        "30": "Level 3<br>",
         "a": "Attempted<br>",
         "x": "Not Attempted"
       },
       "defaultValue": "x"
     },
-    { "name": "Climb",
+    { "name": "Climb Position",
       "code": "tcs",
       "type": "radio",
       "choices": {
@@ -183,21 +183,19 @@ var config_data = `
       "code": "ds",
       "type": "radio",
       "choices": {
-        "n": "Not Effective<br>",
-        "a": "Average<br>",
-        "v": "Very Effective<br>",
-        "x": "Not Observed"
+        "0": "Not Effective<br>",
+        "1": "Average<br>",
+        "2": "Very Effective"
       },
-      "defaultValue": "x"
+      "defaultValue": "1"
     },
     { "name": "Defense Rating",
       "code": "dr",
       "type": "radio",
       "choices": {
-        "b": "Below Average<br>",
-        "a": "Average<br>",
-        "g": "Good<br>",
-        "e": "Excellent<br>",
+        "0": "Not Effective<br>",
+        "1": "Average<br>",
+        "2": "Very Effective<br>"
         "x": "Did not play defense"
       },
       "defaultValue": "x"
