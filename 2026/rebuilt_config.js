@@ -23,7 +23,6 @@ var config_data = `
       "type": "level",
       "choices": {
         "qm": "Quals<br>",
-        "sf": "Semifinals<br>",
         "f": "Finals"
       },
       "defaultValue": "qm",
@@ -168,6 +167,15 @@ var config_data = `
         "x": "Not Attempted"
       },
       "defaultValue": "x"
+    },
+    { "name": "Climb",
+      "code": "tcs",
+      "type": "radio",
+      "choices": {
+        "1": "Left<br>",
+        "2": "Center<br>",
+        "3": "Right"
+      }
     }
   ],
   "postmatch": [
@@ -218,8 +226,12 @@ var config_data = `
       "code": "die",
       "type": "bool"
     },
-    { "name": "Tippy<br>(almost tipped over)",
+    { "name": "Unstable",
       "code": "tip",
+      "type": "bool"
+    },
+    { "name": "Beached",
+      "code": "be",
       "type": "bool"
     },
     { "name": "Make good<br>alliance partner?",
@@ -235,8 +247,7 @@ var config_data = `
       "code": "pen",
       "type": "bool"
     },
-    { "name": "Fuel Percentage",
-      "tooltip": "What percentage of the total fuel for this alliance did this robot score?",
+    { "name": "Fuel Accuracy",
       "code": "pct",
       "type": "number",
       "min": 0,
