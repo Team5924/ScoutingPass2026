@@ -604,6 +604,12 @@ function addRadio(table, idx, name, data) {
     keys = Object.keys(data.choices);
     keys.forEach(c => {
       var inp = document.createElement("input");
+
+      var label = document.createElement("label");
+      label.setAttribute("for", inp.id);       // link label to input
+      label.innerHTML = data.choices[c];       // text inside the box
+      cell2.appendChild(label);
+
       inp.setAttribute("id", "input_" + data.code + "_" + c);
       inp.setAttribute("type", "radio");
       if (enableGoogleSheets && data.hasOwnProperty('gsCol')) {
@@ -616,7 +622,7 @@ function addRadio(table, idx, name, data) {
         inp.setAttribute("checked", "");
       }
       cell2.appendChild(inp);
-      cell2.innerHTML += data.choices[c];
+      // cell2.innerHTML += data.choices[c];
     });
   }
   var inp = document.createElement("input");

@@ -47,6 +47,29 @@ html, body{
     font-weight: 500;
 }
 
+/* hide the actual radio input */
+input[type="radio"] {
+  display: none;
+}
+
+/* style the label that appears next to the input */
+input[type="radio"] + label {
+  display: inline-block;
+  padding: 6px 12px;       /* size of the box */
+  margin: 2px;             /* spacing between buttons */
+  border: 1px solid #444;  /* box border */
+  border-radius: 4px;      /* rounded corners */
+  cursor: pointer;
+  user-select: none;
+  text-align: center;
+}
+
+/* highlight when selected */
+input[type="radio"]:checked + label {
+  background-color: #444;
+  color: #fff;
+}
+
 #autonHeader, #endgameHeader, #teleopHeader1, #teleopHeader2{
     color: black;
     border-color: black;
