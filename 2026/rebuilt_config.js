@@ -159,11 +159,11 @@ var config_data = `
     },
     { "name": "Defense Inactive",
       "code": "din",
-      "type": "bool",
+      "type": "bool"
     },
     { "name": "Defense Active",
       "code": "dac",
-      "type": "bool",
+      "type": "bool"
     },
     { "name": "Crossed Bump",
       "code": "bmp",
@@ -172,7 +172,7 @@ var config_data = `
     { "name": "Crossed Trench",
       "code": "tre",
       "type": "bool"
-    },
+    }
   ],
   "endgame": [
     { "name": "Climb",
@@ -189,11 +189,11 @@ var config_data = `
     },
     { "name": "Success",
       "code": "tcs",
-      "type": "bool",
+      "type": "bool"
     },
     { "name": "Failed",
       "code": "tcf",
-      "type": "bool",
+      "type": "bool"
     }
   ],
   "postmatch": [
@@ -240,7 +240,7 @@ var config_data = `
         "50": "50%<br>",
         "75": "75%<br>",
         "100": "100%"
-      },
+      }
     },
     { "name": "Comments",
       "code": "co",
