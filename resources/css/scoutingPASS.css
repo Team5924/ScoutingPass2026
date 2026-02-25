@@ -85,59 +85,47 @@ html, body{
 
     transition: transform 0.05s ease, background 0.1s ease, box-shadow 0.1s ease;
 }
-
-/* Team grid 2x3 layout */
 .radio-container-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 4px;
+  justify-content: center; /* centers grid horizontally */
 }
 
-/* Single column layout */
-.radio-container-col {
+.radio-container-column {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  justify-content: center;
+  gap: 4px;
 }
 
-/* Hide the actual radio input */
-input[type="radio"] {
-  display: none;
-}
-
-/* Labels styled as buttons */
 .radio-label {
   display: inline-block;
-  padding: 8px 16px;
-  border: 2px solid #666;
-  border-radius: 6px;
+  padding: 4px 8px;
+  border: 1px solid #888;
+  border-radius: 4px;
   cursor: pointer;
-  user-select: none;
-  min-width: 60px;
   text-align: center;
-  transition: 0.2s all ease;
+  user-select: none;
+  font-size: 0.9rem;
 }
 
-/* Fill color when selected */
+input[type="radio"] {
+  display: none; /* hide native radio button */
+}
+
 input[type="radio"]:checked + .radio-label {
-  background-color: #333;
-  color: #fff;
-  border-color: #333;
-  font-weight: bold;
+  background-color: #333; /* fallback for non-alliance */
+  color: white;
 }
 
-/* Team colors */
-.red-button input[type="radio"]:checked + .radio-label,
-.red-button input[type="radio"]:checked {
+/* alliance colors */
+.red-button input[type="radio"]:checked + .radio-label {
   background-color: #c00;
   color: white;
 }
 
-.blue-button input[type="radio"]:checked + .radio-label,
-.blue-button input[type="radio"]:checked {
-  background-color: #0044cc;
+.blue-button input[type="radio"]:checked + .radio-label {
+  background-color: #0066ff;
   color: white;
 }
 

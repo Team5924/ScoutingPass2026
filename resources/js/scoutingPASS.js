@@ -598,80 +598,72 @@ function addRadio(table, idx, name, data) {
   var cell2 = row.insertCell(1);
 
   cell1.style.width = ColWidth;
-  cell2.style.width = ColWidth;
   cell1.classList.add("title");
+  cell2.style.width = ColWidth;
   cell2.classList.add("field");
 
-  // Title and tooltip
   cell1.innerHTML = name + '&nbsp;';
-  if (data.hasOwnProperty('tooltip')) {
-    cell1.setAttribute("title", data.tooltip);
-  }
+  if (data.tooltip) cell1.setAttribute("title", data.tooltip);
 
-  // Validation
   if (!data.hasOwnProperty('code')) {
     cell1.innerHTML = `Error: No code specified for ${name}`;
     return idx + 1;
   }
 
-  // Call onchange for specific types
-  if (["level", "robot"].includes(data.type)) {
-    cell2.setAttribute("onchange", "updateMatchStart(event)");
+  // Determine container type
+  let container = document.createElement("div");
+  if (data.code === "r") {
+    // alliance/team buttons: 2x3 grid
+    container.classList.add("radio-container-grid");
+  } else {
+    // normal radios: column
+    container.classList.add("radio-container-column");
   }
 
-  var checked = data.defaultValue || null;
-
-  if (data.hasOwnProperty('choices')) {
-    // Container for all radio buttons
-    const container = document.createElement("div");
-
-    // Decide layout: team grid vs column
-    if (data.type === "team") {
-      container.classList.add("radio-container-grid"); // 2x3 grid
-    } else {
-      container.classList.add("radio-container-col"); // single column
-    }
-
-    Object.keys(data.choices).forEach(c => {
+  // Add each radio button
+  if (data.choices) {
+    let keys = Object.keys(data.choices);
+    keys.forEach(c => {
       const inp = document.createElement("input");
       inp.type = "radio";
       inp.id = "input_" + data.code + "_" + c;
-      inp.name = enableGoogleSheets && data.gsCol ? data.gsCol : data.code;
       inp.value = c;
-      if (checked == c) inp.checked = true;
+      inp.name = enableGoogleSheets && data.gsCol ? data.gsCol : data.code;
+      if (data.defaultValue === c) inp.checked = true;
 
+      // create label
       const label = document.createElement("label");
-      label.setAttribute("for", inp.id);
       label.classList.add("radio-label");
-      label.innerText = data.choices[c];
+      label.setAttribute("for", inp.id);
+      label.innerHTML = data.choices[c];
 
-      // Add team colors for team grid
-      if (data.type === "team") {
-        label.classList.add(c.includes("red") ? "red-button" : "blue-button");
+      // If alliance/team, color by prefix
+      if (data.code === "r") {
+        if (c.startsWith("r")) container.classList.add("red-button");
+        if (c.startsWith("b")) container.classList.add("blue-button");
       }
 
       container.appendChild(inp);
       container.appendChild(label);
     });
-
-    cell2.appendChild(container);
   }
 
-  // Hidden input for tracking
+  // hidden input for value storage
   const hidden = document.createElement("input");
   hidden.type = "hidden";
   hidden.id = "display_" + data.code;
   hidden.value = "";
-  cell2.appendChild(hidden);
+  container.appendChild(hidden);
 
-  // Hidden default input if needed
-  if (data.hasOwnProperty('defaultValue')) {
+  if (data.defaultValue) {
     const def = document.createElement("input");
     def.type = "hidden";
     def.id = "default_" + data.code;
     def.value = data.defaultValue;
-    cell2.appendChild(def);
+    container.appendChild(def);
   }
+
+  cell2.appendChild(container);
 
   return idx + 1;
 }
