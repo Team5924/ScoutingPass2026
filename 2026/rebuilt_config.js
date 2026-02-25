@@ -145,7 +145,34 @@ var config_data = `
     { "name": "Pickup from Floor",
       "code": "tff",
       "type": "bool"
-    }
+    },
+    { "name": "Defense Rating",
+      "code": "dr",
+      "type": "radio",
+      "choices": {
+        "0": "Not Effective<br>",
+        "1": "Average<br>",
+        "2": "Very Effective<br>",
+        "x": "Did not play defense"
+      },
+      "defaultValue": "x"
+    },
+    { "name": "Defense Inactive",
+      "code": "din",
+      "type": "bool",
+    },
+    { "name": "Defense Active",
+      "code": "dac",
+      "type": "bool",
+    },
+    { "name": "Crossed Bump",
+      "code": "bmp",
+      "type": "bool"
+    },
+    { "name": "Crossed Trench",
+      "code": "tre",
+      "type": "bool"
+    },
   ],
   "endgame": [
     { "name": "Climb",
@@ -160,14 +187,13 @@ var config_data = `
       },
       "defaultValue": "x"
     },
-    { "name": "Climb Position",
+    { "name": "Success",
       "code": "tcs",
-      "type": "radio",
-      "choices": {
-        "1": "Left<br>",
-        "2": "Center<br>",
-        "3": "Right"
-      }
+      "type": "bool",
+    },
+    { "name": "Failed",
+      "code": "tcf",
+      "type": "bool",
     }
   ],
   "postmatch": [
@@ -181,17 +207,6 @@ var config_data = `
       },
       "defaultValue": "1"
     },
-    { "name": "Defense Rating",
-      "code": "dr",
-      "type": "radio",
-      "choices": {
-        "0": "Not Effective<br>",
-        "1": "Average<br>",
-        "2": "Very Effective<br>",
-        "x": "Did not play defense"
-      },
-      "defaultValue": "x"
-    },
     { "name": "Speed Rating",
       "code": "sr",
       "type": "radio",
@@ -203,14 +218,6 @@ var config_data = `
         "5": "5 (fast)"
       },
       "defaultValue":"3"
-    },
-    { "name": "Crossed Bump",
-      "code": "bmp",
-      "type": "bool"
-    },
-    { "name": "Crossed Trench",
-      "code": "tre",
-      "type": "bool"
     },
     { "name": "Died/Immobilized",
       "code": "die",
