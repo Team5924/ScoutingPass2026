@@ -23,7 +23,6 @@ var config_data = `
       "type": "level",
       "choices": {
         "qm": "Quals<br>",
-        "sf": "Semifinals<br>",
         "f": "Finals"
       },
       "defaultValue": "qm",
@@ -93,7 +92,7 @@ var config_data = `
       "code": "ac",
       "type": "radio",
       "choices": {
-        "c": "Climbed<br>",
+        "15": "Climbed<br>",
         "a": "Attempted<br>",
         "x": "Not Attempted"
       },
@@ -143,68 +142,9 @@ var config_data = `
       "altInc2": 5,
       "type": "counter"
     },
-    { "name": "Pickup from Depot",
-      "code": "tfd",
-      "type": "bool"
-    },
-    { "name": "Pickup from Outpost",
-      "code": "tfo",
-      "type": "bool"
-    },
     { "name": "Pickup from Floor",
       "code": "tff",
       "type": "bool"
-    }
-  ],
-  "endgame": [
-    { "name": "Climb",
-      "code": "tc",
-      "type": "radio",
-      "choices": {
-        "1": "Level 1<br>",
-        "2": "Level 2<br>",
-        "3": "Level 3<br>",
-        "a": "Attempted<br>",
-        "x": "Not Attempted"
-      },
-      "defaultValue": "x"
-    }
-  ],
-  "postmatch": [
-    { "name": "Driver Skill",
-      "code": "ds",
-      "type": "radio",
-      "choices": {
-        "n": "Not Effective<br>",
-        "a": "Average<br>",
-        "v": "Very Effective<br>",
-        "x": "Not Observed"
-      },
-      "defaultValue": "x"
-    },
-    { "name": "Defense Rating",
-      "code": "dr",
-      "type": "radio",
-      "choices": {
-        "b": "Below Average<br>",
-        "a": "Average<br>",
-        "g": "Good<br>",
-        "e": "Excellent<br>",
-        "x": "Did not play defense"
-      },
-      "defaultValue": "x"
-    },
-    { "name": "Speed Rating",
-      "code": "sr",
-      "type": "radio",
-      "choices": {
-        "1": "1 (slow)<br>",
-        "2": "2<br>",
-        "3": "3<br>",
-        "4": "4<br>",
-        "5": "5 (fast)"
-      },
-      "defaultValue":"3"
     },
     { "name": "Crossed Bump",
       "code": "bmp",
@@ -214,33 +154,81 @@ var config_data = `
       "code": "tre",
       "type": "bool"
     },
+    { "name": "Defense Rating",
+      "code": "dr",
+      "type": "radio",
+      "choices": {
+        "0": "Not Effective<br>",
+        "1": "Average<br>",
+        "2": "Very Effective<br>",
+        "x": "Did not play defense"
+      },
+      "defaultValue": "x"
+    },
+    { "name": "Defense (Inactive Period)",
+      "code": "din",
+      "type": "bool"
+    },
+    { "name": "Defense (Active Period)",
+      "code": "dac",
+      "type": "bool"
+    }
+  ],
+  "endgame": [
+    { "name": "Climb",
+      "code": "tc",
+      "type": "radio",
+      "choices": {
+        "10": "Level 1<br>",
+        "20": "Level 2<br>",
+        "30": "Level 3<br>",
+        "a": "Attempted<br>",
+        "x": "Not Attempted"
+      },
+      "defaultValue": "x"
+    },
+    { "name": "Climb Position",
+      "code": "tcs",
+      "type": "radio",
+      "choices": {
+        "1": "Left<br>",
+        "2": "Center<br>",
+        "3": "Right"
+      }
+    }
+  ],
+  "postmatch": [
+    { "name": "Driver Skill",
+      "code": "ds",
+      "type": "radio",
+      "choices": {
+        "0": "Not Effective<br>",
+        "1": "Average<br>",
+        "2": "Very Effective"
+      },
+      "defaultValue": "1"
+    },
     { "name": "Died/Immobilized",
       "code": "die",
       "type": "bool"
     },
-    { "name": "Tippy<br>(almost tipped over)",
+    { "name": "Unstable / Beached",
       "code": "tip",
       "type": "bool"
     },
-    { "name": "Make good<br>alliance partner?",
-      "tooltip": "Would you want this robot on your alliance in eliminations?",
+    { "name": "Petition to DNP?",
       "code": "all",
       "type": "bool"
     },
-    { "name": "Was Defended",
-      "code": "def",
-      "type": "bool"
-    },
-    { "name": "Excessive Penalties",
-      "code": "pen",
-      "type": "bool"
-    },
-    { "name": "Fuel Percentage",
-      "tooltip": "What percentage of the total fuel for this alliance did this robot score?",
+    { "name": "Fuel Accuracy",
       "code": "pct",
-      "type": "number",
-      "min": 0,
-      "max": 100
+      "type": "radio",
+      "choices": {
+        "1": "Low<br>",
+        "2": "Mid<br>",
+        "3": "High<br>",
+        "4": "Very High"
+      }
     },
     { "name": "Comments",
       "code": "co",
