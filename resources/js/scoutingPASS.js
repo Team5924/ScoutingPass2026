@@ -203,7 +203,8 @@ function addCounter(table, idx, name, data) {
   
   // Create button group
   const buttonGroup = document.createElement("div");
-  buttonGroup.style.cssText = 'display: inline-flex; align-items: center; gap: 10px;';
+  // buttonGroup.style.cssText = 'display: inline-flex; align-items: center; gap: 10px;';
+  buttonGroup.classList.add("score-group"); 
 
   // Helper to create input elements
   const createInput = (type, id, value, incrementValue) => {

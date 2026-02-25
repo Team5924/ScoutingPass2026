@@ -11,7 +11,7 @@
     <li><a href="#overview">Overview</a></li>
     <li><a href="#global">Global Attributes</a></li>
     <li><a href="#game-sections">Game Sections</a></li>
-    <li><a href="#auton">Autonomous</a></li>
+    <li><a href="#auto">Autonomous</a></li>
     <li><a href="#teleop">Teleop</a></li>
     <li><a href="#endgame">Endgame</a></li>
     <li><a href="#post-match">Post-Match</a></li>
@@ -89,7 +89,7 @@ The JSON is formatted like this:
     { Element2 Attributes },
     { ElementN Attributes }
   ],
-  "auton": [
+  "auto": [
     { Element1 Attributes },
     { Element2 Attributes },
     { ElementN Attributes }

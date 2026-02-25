@@ -211,13 +211,11 @@ var config_data = `
       "code": "sr",
       "type": "radio",
       "choices": {
-        "1": "1 (slow)<br>",
-        "2": "2<br>",
-        "3": "3<br>",
-        "4": "4<br>",
-        "5": "5 (fast)"
+        "1": "Slow<br>",
+        "2": "Average<br>",
+        "3": "Fast"
       },
-      "defaultValue":"3"
+      "defaultValue":"2"
     },
     { "name": "Died/Immobilized",
       "code": "die",
@@ -235,11 +233,10 @@ var config_data = `
       "code": "pct",
       "type": "radio",
       "choices": {
-        "0": "0%<br>",
-        "25": "25%<br>",
-        "50": "50%<br>",
-        "75": "75%<br>",
-        "100": "100%"
+        "0": "<33%<br>",
+        "1": "33-66%<br>",
+        "2": "67-90%<br>",
+        "3": ">90%"
       }
     },
     { "name": "Comments",

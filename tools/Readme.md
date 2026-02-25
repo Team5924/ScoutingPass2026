@@ -80,7 +80,7 @@ The script expects a JavaScript file containing a JSON configuration object with
 ```javascript
 const config = `{
   "prematch": [...],
-  "auton": [...],
+  "auto": [...],
   "teleop": [...],
   "endgame": [...],
   "postmatch": [...]
