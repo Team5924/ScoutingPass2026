@@ -595,76 +595,81 @@ function addNumber(table, idx, name, data) {
 function addRadio(table, idx, name, data) {
   var row = table.insertRow(idx);
   var cell1 = row.insertCell(0);
-  cell1.style.width = ColWidth;
-  cell1.classList.add("title");
-  if (!data.hasOwnProperty('code')) {
-    cell1.innerHTML = `Error: No code specified for ${name}`;
-    return idx + 1;
-  }
   var cell2 = row.insertCell(1);
+
+  cell1.style.width = ColWidth;
   cell2.style.width = ColWidth;
+  cell1.classList.add("title");
+  cell2.classList.add("field");
+
+  // Title and tooltip
   cell1.innerHTML = name + '&nbsp;';
   if (data.hasOwnProperty('tooltip')) {
     cell1.setAttribute("title", data.tooltip);
   }
-  cell2.classList.add("field");
 
-  if ((data.type == 'level') || (data.type == 'robot')) {
+  // Validation
+  if (!data.hasOwnProperty('code')) {
+    cell1.innerHTML = `Error: No code specified for ${name}`;
+    return idx + 1;
+  }
+
+  // Call onchange for specific types
+  if (["level", "robot"].includes(data.type)) {
     cell2.setAttribute("onchange", "updateMatchStart(event)");
   }
 
-  var checked = data.hasOwnProperty('defaultValue') ? data.defaultValue : null;
+  var checked = data.defaultValue || null;
 
   if (data.hasOwnProperty('choices')) {
-    keys = Object.keys(data.choices);
+    // Container for all radio buttons
+    const container = document.createElement("div");
 
-    // Create container for buttons
-    var container = document.createElement("div");
-    container.classList.add("radio-container");
-    // optional: use grid for team buttons
-    if (data.type === "robot") container.classList.add("team-grid"); 
-    else container.classList.add("radio-column");
+    // Decide layout: team grid vs column
+    if (data.type === "team") {
+      container.classList.add("radio-container-grid"); // 2x3 grid
+    } else {
+      container.classList.add("radio-container-col"); // single column
+    }
 
-    keys.forEach(c => {
-      var inp = document.createElement("input");
-      inp.setAttribute("id", "input_" + data.code + "_" + c);
-      inp.setAttribute("type", "radio");
-      inp.setAttribute("name", enableGoogleSheets && data.hasOwnProperty('gsCol') ? data.gsCol : data.code);
-      inp.setAttribute("value", c);
-      if (checked == c) inp.setAttribute("checked", "");
+    Object.keys(data.choices).forEach(c => {
+      const inp = document.createElement("input");
+      inp.type = "radio";
+      inp.id = "input_" + data.code + "_" + c;
+      inp.name = enableGoogleSheets && data.gsCol ? data.gsCol : data.code;
+      inp.value = c;
+      if (checked == c) inp.checked = true;
 
-      // Wrap in label
-      var label = document.createElement("label");
-      label.classList.add("radio-label");
+      const label = document.createElement("label");
       label.setAttribute("for", inp.id);
+      label.classList.add("radio-label");
+      label.innerText = data.choices[c];
 
-      // For team buttons, add color class
-      if (data.type === "robot") {
-        if (c.toLowerCase().startsWith("red")) label.classList.add("red-button");
-        else if (c.toLowerCase().startsWith("blue")) label.classList.add("blue-button");
+      // Add team colors for team grid
+      if (data.type === "team") {
+        label.classList.add(c.includes("red") ? "red-button" : "blue-button");
       }
 
-      label.innerText = data.choices[c];
-      label.prepend(inp); // keep input inside label
-
+      container.appendChild(inp);
       container.appendChild(label);
     });
 
     cell2.appendChild(container);
   }
 
-  // Hidden input for internal tracking
-  var inp = document.createElement("input");
-  inp.setAttribute("id", "display_" + data.code);
-  inp.setAttribute("hidden", "");
-  inp.setAttribute("value", "");
-  cell2.appendChild(inp);
+  // Hidden input for tracking
+  const hidden = document.createElement("input");
+  hidden.type = "hidden";
+  hidden.id = "display_" + data.code;
+  hidden.value = "";
+  cell2.appendChild(hidden);
 
+  // Hidden default input if needed
   if (data.hasOwnProperty('defaultValue')) {
-    var def = document.createElement("input");
-    def.setAttribute("id", "default_" + data.code)
-    def.setAttribute("type", "hidden");
-    def.setAttribute("value", data.defaultValue);
+    const def = document.createElement("input");
+    def.type = "hidden";
+    def.id = "default_" + data.code;
+    def.value = data.defaultValue;
     cell2.appendChild(def);
   }
 

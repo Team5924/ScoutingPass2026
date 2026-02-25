@@ -86,63 +86,59 @@ html, body{
     transition: transform 0.05s ease, background 0.1s ease, box-shadow 0.1s ease;
 }
 
-.radio-container {
+/* Team grid 2x3 layout */
+.radio-container-grid {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 10px;
+  gap: 8px;
 }
 
-.radio-column {
+/* Single column layout */
+.radio-container-col {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-}
-
-.team-grid {
-  display: grid;
-  grid-template-columns: repeat(3, auto); /* 2x3 for 6 teams */
-  gap: 10px;
-}
-
-.radio-label {
-  cursor: pointer;
-  padding: 8px 14px;
-  border-radius: 8px;
-  border: 2px solid #ccc;
-  user-select: none;
-  transition: 0.2s;
-  display: inline-flex;
-  align-items: center;
+  gap: 6px;
   justify-content: center;
 }
 
-.radio-label input {
-  display: none; /* hide the native radio */
+/* Hide the actual radio input */
+input[type="radio"] {
+  display: none;
 }
 
-.radio-label:hover {
-  background-color: #eee;
+/* Labels styled as buttons */
+.radio-label {
+  display: inline-block;
+  padding: 8px 16px;
+  border: 2px solid #666;
+  border-radius: 6px;
+  cursor: pointer;
+  user-select: none;
+  min-width: 60px;
+  text-align: center;
+  transition: 0.2s all ease;
 }
 
-.radio-label input:checked + & {
-  border-color: #000;
+/* Fill color when selected */
+input[type="radio"]:checked + .radio-label {
+  background-color: #333;
+  color: #fff;
+  border-color: #333;
   font-weight: bold;
 }
 
 /* Team colors */
-.red-button {
-  background-color: #f66;
+.red-button input[type="radio"]:checked + .radio-label,
+.red-button input[type="radio"]:checked {
+  background-color: #c00;
   color: white;
 }
 
-.blue-button {
-  background-color: #66f;
+.blue-button input[type="radio"]:checked + .radio-label,
+.blue-button input[type="radio"]:checked {
+  background-color: #0044cc;
   color: white;
-}
-
-.radio-label input:checked {
-  box-shadow: 0 0 0 3px rgba(0,0,0,0.2) inset;
 }
 
 .nav-row {
