@@ -86,6 +86,65 @@ html, body{
     transition: transform 0.05s ease, background 0.1s ease, box-shadow 0.1s ease;
 }
 
+.radio-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.radio-column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, auto); /* 2x3 for 6 teams */
+  gap: 10px;
+}
+
+.radio-label {
+  cursor: pointer;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 2px solid #ccc;
+  user-select: none;
+  transition: 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.radio-label input {
+  display: none; /* hide the native radio */
+}
+
+.radio-label:hover {
+  background-color: #eee;
+}
+
+.radio-label input:checked + & {
+  border-color: #000;
+  font-weight: bold;
+}
+
+/* Team colors */
+.red-button {
+  background-color: #f66;
+  color: white;
+}
+
+.blue-button {
+  background-color: #66f;
+  color: white;
+}
+
+.radio-label input:checked {
+  box-shadow: 0 0 0 3px rgba(0,0,0,0.2) inset;
+}
+
 .nav-row {
   display: flex;
   justify-content: center;  /* horizontally center */
