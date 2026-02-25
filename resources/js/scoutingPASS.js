@@ -799,9 +799,9 @@ function configure() {
 	buildRequiredElementList(element);
   });
 
-  // Configure auton screen
-  var ac = mydata.auton;
-  var at = document.getElementById("auton_table");
+  // Configure auto screen
+  var ac = mydata.auto;
+  var at = document.getElementById("auto_table");
   idx = 0;
   ac.forEach(element => {
     idx = addElement(at, idx, element);
