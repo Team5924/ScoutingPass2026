@@ -619,7 +619,12 @@ function addRadio(table, idx, name, data) {
       var lbl = document.createElement("label");
       lbl.classList.add("radio-btn");
       lbl.appendChild(inp);
-      lbl.appendChild(document.createTextNode(data.choices[c]));
+      // lbl.appendChild(document.createTextNode(data.choices[c]));
+
+      // add a span for the visible text
+      var span = document.createElement("span");
+      span.innerHTML = data.choices[c];
+      lbl.appendChild(span);
       
       cell2.appendChild(lbl);
       // label.setAttribute("for", inp.id);       // link label to input

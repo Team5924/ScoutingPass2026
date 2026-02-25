@@ -48,11 +48,11 @@ html, body{
 }
 
 /* hide the actual radio input */
-input[type="radio"] {
+.radio-btn input[type="radio"] {
   display: none;
 }
 
-.radio-btn {
+.radio-btn span {
   display: inline-block;
   padding: 6px 12px;       /* size of the box */
   margin: 2px;             /* spacing between buttons */
@@ -64,8 +64,7 @@ input[type="radio"] {
 }
 
 /* highlight when selected */
-.radio-btn input[type="radio"]:checked + span,
-.radio-btn input[type="radio"]:checked {
+.radio-btn input[type="radio"]:checked + span {
   background-color: rgb(239, 239, 236);
   color: black;
 }
