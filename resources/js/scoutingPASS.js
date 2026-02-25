@@ -597,6 +597,7 @@ function addRadio(table, idx, name, data) {
   var cell = row.insertCell(0);
   cell.style.width = ColWidth;
   cell.classList.add("field");
+  cell.classList.add("radio-buttons");
 
   // Add label above the buttons
   var label = document.createElement("div");
