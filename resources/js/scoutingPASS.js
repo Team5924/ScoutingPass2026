@@ -597,54 +597,81 @@ function addRadio(table, idx, name, data) {
   var cell1 = row.insertCell(0);
   cell1.style.width = ColWidth;
   cell1.classList.add("title");
-  if (!data.hasOwnProperty('code')) {
-    cell1.innerHTML = `Error: No code specified for ${name}`;
-    return idx + 1;
-  }
-  var cell2 = row.insertCell(1);
-  cell2.style.width = ColWidth;
   cell1.innerHTML = name + '&nbsp;';
   if (data.hasOwnProperty('tooltip')) {
     cell1.setAttribute("title", data.tooltip);
   }
+
+  var cell2 = row.insertCell(1);
+  cell2.style.width = ColWidth;
   cell2.classList.add("field");
-  if ((data.type == 'level') ||
-    (data.type == 'robot')
-  ) {
+
+  if ((data.type == 'level') || (data.type == 'robot')) {
     cell2.setAttribute("onchange", "updateMatchStart(event)");
   }
-  var checked = null
-  if (data.hasOwnProperty('defaultValue')) {
-    checked = data.defaultValue;
-  }
-  if (data.hasOwnProperty('choices')) {
-    keys = Object.keys(data.choices);
-    keys.forEach(c => {
-      var inp = document.createElement("input");
-      inp.setAttribute("id", "input_" + data.code + "_" + c);
-      inp.setAttribute("type", "radio");
-      if (enableGoogleSheets && data.hasOwnProperty('gsCol')) {
-        inp.setAttribute("name", data.gsCol);
-      } else {
-        inp.setAttribute("name", data.code);
-      }
-      inp.setAttribute("value", c);
-      if (checked == c) {
-        inp.setAttribute("checked", "");
-      }
-      cell2.appendChild(inp);
-      cell2.innerHTML += data.choices[c];
-    });
-  }
-  var inp = document.createElement("input");
-  inp.setAttribute("id", "display_" + data.code);
-  inp.setAttribute("hidden", "");
-  inp.setAttribute("value", "");
-  cell2.appendChild(inp);
 
+  var checked = data.hasOwnProperty('defaultValue') ? data.defaultValue : null;
+
+  if (data.hasOwnProperty('choices')) {
+    var keys = Object.keys(data.choices);
+
+    // Determine layout: grid for team, column for others
+    var isTeam = data.code.startsWith("red-") || data.code.startsWith("blue-");
+    var container = document.createElement("div");
+    container.classList.add("radio-container");
+    container.style.display = isTeam ? "grid" : "flex";
+    container.style.justifyContent = "center";
+    container.style.gap = "0.5rem";
+    if (isTeam) {
+      container.style.gridTemplateColumns = "repeat(3, auto)";
+    } else {
+      container.style.flexDirection = "column";
+    }
+
+    keys.forEach(c => {
+      var id = "input_" + data.code + "_" + c;
+
+      var inp = document.createElement("input");
+      inp.setAttribute("type", "radio");
+      inp.setAttribute("id", id);
+      inp.setAttribute("name", enableGoogleSheets && data.hasOwnProperty('gsCol') ? data.gsCol : data.code);
+      inp.setAttribute("value", c);
+      if (checked == c) inp.checked = true;
+
+      var label = document.createElement("label");
+      label.setAttribute("for", id);
+      label.classList.add("radio-label");
+      label.textContent = data.choices[c];
+
+      // color team buttons
+      if (isTeam) {
+        label.style.backgroundColor = data.code.startsWith("red-") ? "#f66" : "#66f";
+        label.style.color = "white";
+        label.style.padding = "0.5rem 1rem";
+        label.style.borderRadius = "0.5rem";
+        label.style.cursor = "pointer";
+        label.style.textAlign = "center";
+        label.style.userSelect = "none";
+      }
+
+      container.appendChild(inp);
+      container.appendChild(label);
+    });
+
+    cell2.appendChild(container);
+  }
+
+  // hidden display field
+  var inpHidden = document.createElement("input");
+  inpHidden.setAttribute("id", "display_" + data.code);
+  inpHidden.setAttribute("hidden", "");
+  inpHidden.setAttribute("value", "");
+  cell2.appendChild(inpHidden);
+
+  // hidden default value
   if (data.hasOwnProperty('defaultValue')) {
     var def = document.createElement("input");
-    def.setAttribute("id", "default_" + data.code)
+    def.setAttribute("id", "default_" + data.code);
     def.setAttribute("type", "hidden");
     def.setAttribute("value", data.defaultValue);
     cell2.appendChild(def);
