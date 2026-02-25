@@ -69,6 +69,37 @@ html, body{
   color: black;
 }
 
+/* robot buttons (red/blue) */
+input[name="r"] + label {
+  background-color: #eee;    /* default */
+  color: black;
+  padding: 6px 12px;
+  margin: 2px;
+  border: 1px solid #444;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* highlight when checked */
+input[name="r"]:checked + label {
+  background-color: #f00; /* red highlight for red buttons */
+  color: white;
+}
+
+/* override for blue robots */
+input[name="r"][value^="b"]:checked + label {
+  background-color: #00f; /* blue highlight for blue buttons */
+  color: white;
+}
+
+/* optionally color the default background of buttons */
+input[name="r"][value^="r"] + label {
+  background-color: #fcc; /* light red */
+}
+input[name="r"][value^="b"] + label {
+  background-color: #ccf; /* light blue */
+}
+
 #autonHeader, #endgameHeader, #teleopHeader1, #teleopHeader2{
     color: black;
     border-color: black;
