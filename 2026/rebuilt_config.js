@@ -142,16 +142,35 @@ var config_data = `
       "altInc2": 5,
       "type": "counter"
     },
-    { "name": "Pickup from Depot",
-      "code": "tfd",
-      "type": "bool"
-    },
-    { "name": "Pickup from Outpost",
-      "code": "tfo",
-      "type": "bool"
-    },
     { "name": "Pickup from Floor",
       "code": "tff",
+      "type": "bool"
+    },
+    { "name": "Crossed Bump",
+      "code": "bmp",
+      "type": "bool"
+    },
+    { "name": "Crossed Trench",
+      "code": "tre",
+      "type": "bool"
+    },
+    { "name": "Defense Rating",
+      "code": "dr",
+      "type": "radio",
+      "choices": {
+        "0": "Not Effective<br>",
+        "1": "Average<br>",
+        "2": "Very Effective<br>",
+        "x": "Did not play defense"
+      },
+      "defaultValue": "x"
+    },
+    { "name": "Defense (Inactive Period)",
+      "code": "din",
+      "type": "bool"
+    },
+    { "name": "Defense (Active Period)",
+      "code": "dac",
       "type": "bool"
     }
   ],
@@ -189,67 +208,27 @@ var config_data = `
       },
       "defaultValue": "1"
     },
-    { "name": "Defense Rating",
-      "code": "dr",
-      "type": "radio",
-      "choices": {
-        "0": "Not Effective<br>",
-        "1": "Average<br>",
-        "2": "Very Effective<br>",
-        "x": "Did not play defense"
-      },
-      "defaultValue": "x"
-    },
-    { "name": "Speed Rating",
-      "code": "sr",
-      "type": "radio",
-      "choices": {
-        "1": "1 (slow)<br>",
-        "2": "2<br>",
-        "3": "3<br>",
-        "4": "4<br>",
-        "5": "5 (fast)"
-      },
-      "defaultValue":"3"
-    },
-    { "name": "Crossed Bump",
-      "code": "bmp",
-      "type": "bool"
-    },
-    { "name": "Crossed Trench",
-      "code": "tre",
-      "type": "bool"
-    },
     { "name": "Died/Immobilized",
       "code": "die",
       "type": "bool"
     },
-    { "name": "Unstable",
+    { "name": "Unstable / Beached",
       "code": "tip",
       "type": "bool"
     },
-    { "name": "Beached",
-      "code": "be",
-      "type": "bool"
-    },
-    { "name": "Make good<br>alliance partner?",
-      "tooltip": "Would you want this robot on your alliance in eliminations?",
+    { "name": "Petition to DNP?",
       "code": "all",
-      "type": "bool"
-    },
-    { "name": "Was Defended",
-      "code": "def",
-      "type": "bool"
-    },
-    { "name": "Excessive Penalties",
-      "code": "pen",
       "type": "bool"
     },
     { "name": "Fuel Accuracy",
       "code": "pct",
-      "type": "number",
-      "min": 0,
-      "max": 100
+      "type": "radio",
+      "choices": {
+        "1": "Low<br>",
+        "2": "Mid<br>",
+        "3": "High<br>",
+        "4": "Very High"
+      }
     },
     { "name": "Comments",
       "code": "co",
