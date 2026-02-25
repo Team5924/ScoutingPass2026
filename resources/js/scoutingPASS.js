@@ -199,28 +199,44 @@ function addCounter(table, idx, name, data) {
 
   // Create centered container for buttons
   const centerContainer = document.createElement("div");
-  centerContainer.style.cssText = 'display: flex; justify-content: center; align-items: center; width: 100%;';
-  
-  // Create button group
-  const buttonGroup = document.createElement("div");
-  // buttonGroup.style.cssText = 'display: inline-flex; align-items: center; gap: 10px;';
-  buttonGroup.classList.add("score-group"); 
+    // centerContainer.style.cssText = 'display: flex; justify-content: center; align-items: center; width: 100%;';
+    centerContainer.classList.add("center-container"); // new wrapper for centering
+    
+    // Create button group
+    const buttonGroup = document.createElement("div");
+    // buttonGroup.style.cssText = 'display: inline-flex; align-items: center; gap: 10px;';
+    buttonGroup.classList.add("score-group"); 
 
-  // Helper to create input elements
-  const createInput = (type, id, value, incrementValue) => {
-    const input = document.createElement("input");
-    input.type = type;
+    // Helper to create input elements
+    const createInput = (type, id, value, incrementValue) => {
+    let input;
+
+    if (type === "button") {
+      // Use <button> for increment/decrement buttons
+      input = document.createElement("button");
+      input.textContent = value;       // Display the value inside the button
+      input.classList.add("score-button"); // Shared styling
+    } else {
+      // Keep <input> for counter display or other types
+      input = document.createElement("input");
+      input.type = type;
+      if (value !== undefined) input.value = value;
+      if (type === "text") {
+        input.disabled = true;       // Make counter display read-only
+        input.classList.add("counter"); // Styling for the number input
+      }
+    }
+
     if (id) input.id = id;
-    if (value !== undefined) input.value = value;
+
     if (incrementValue !== undefined) {
       input.onclick = function() {
         counter(this.parentElement.parentElement.parentElement, incrementValue);
       };
-    }
-	// Prevent double-tap zoom on buttons
-    if (type === "button") {
+      // Prevent double-tap zoom
       input.style.touchAction = 'manipulation';
     }
+
     return input;
   };
 
