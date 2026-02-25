@@ -22,7 +22,7 @@ var config_data = `
       "code": "l",
       "type": "level",
       "choices": {
-        "qm": "Quals<br>",
+        "qm": "Quals",
         "f": "Finals"
       },
       "defaultValue": "qm",
@@ -40,9 +40,9 @@ var config_data = `
       "type": "robot",
       "choices": {
         "r1": "Red-1",
-        "b1": "Blue-1<br>",
+        "b1": "Blue-1",
         "r2": "Red-2",
-        "b2": "Blue-2<br>",
+        "b2": "Blue-2",
         "r3": "Red-3",
         "b3": "Blue-3"
       },
@@ -92,8 +92,8 @@ var config_data = `
       "code": "ac",
       "type": "radio",
       "choices": {
-        "15": "Climbed<br>",
-        "a": "Attempted<br>",
+        "15": "Climbed",
+        "a": "Attempted",
         "x": "Not Attempted"
       },
       "defaultValue": "x"
@@ -158,9 +158,9 @@ var config_data = `
       "code": "dr",
       "type": "radio",
       "choices": {
-        "0": "Not Effective<br>",
-        "1": "Average<br>",
-        "2": "Very Effective<br>",
+        "0": "Not Effective",
+        "1": "Average",
+        "2": "Very Effective",
         "x": "Did not play defense"
       },
       "defaultValue": "x"
@@ -179,10 +179,10 @@ var config_data = `
       "code": "tc",
       "type": "radio",
       "choices": {
-        "10": "Level 1<br>",
-        "20": "Level 2<br>",
-        "30": "Level 3<br>",
-        "a": "Attempted<br>",
+        "10": "Level 1",
+        "20": "Level 2",
+        "30": "Level 3",
+        "a": "Attempted",
         "x": "Not Attempted"
       },
       "defaultValue": "x"
@@ -191,8 +191,8 @@ var config_data = `
       "code": "tcs",
       "type": "radio",
       "choices": {
-        "1": "Left<br>",
-        "2": "Center<br>",
+        "1": "Left",
+        "2": "Center",
         "3": "Right"
       }
     }
@@ -202,8 +202,8 @@ var config_data = `
       "code": "ds",
       "type": "radio",
       "choices": {
-        "0": "Not Effective<br>",
-        "1": "Average<br>",
+        "0": "Not Effective",
+        "1": "Average",
         "2": "Very Effective"
       },
       "defaultValue": "1"
@@ -224,9 +224,9 @@ var config_data = `
       "code": "pct",
       "type": "radio",
       "choices": {
-        "1": "Low<br>",
-        "2": "Mid<br>",
-        "3": "High<br>",
+        "1": "Low",
+        "2": "Mid",
+        "3": "High",
         "4": "Very High"
       }
     },
