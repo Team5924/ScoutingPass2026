@@ -96,7 +96,7 @@ var config_data = `
       "maxSize": 250
     }
   ],
-  "auton": [
+  "auto": [
   ],
   "teleop": [
   ],

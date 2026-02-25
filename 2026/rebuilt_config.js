@@ -64,7 +64,7 @@ var config_data = `
       "shape": "circle 5 black red true"
     }
   ],
-  "auton": [
+  "auto": [
     { "name": "Auto Shooting Location",
       "code": "asl",
       "type": "clickable_image",
