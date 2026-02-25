@@ -52,8 +52,7 @@ input[type="radio"] {
   display: none;
 }
 
-/* style the label that appears next to the input */
-input[type="radio"] + label {
+.radio-btn {
   display: inline-block;
   padding: 6px 12px;       /* size of the box */
   margin: 2px;             /* spacing between buttons */
@@ -65,7 +64,8 @@ input[type="radio"] + label {
 }
 
 /* highlight when selected */
-input[type="radio"]:checked + label {
+.radio-btn input[type="radio"]:checked + span,
+.radio-btn input[type="radio"]:checked {
   background-color: #444;
   color: #fff;
 }
