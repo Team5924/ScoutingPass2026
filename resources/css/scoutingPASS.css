@@ -85,48 +85,55 @@ html, body{
 
     transition: transform 0.05s ease, background 0.1s ease, box-shadow 0.1s ease;
 }
-.radio-container-grid {
+
+.field-label {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.radio-container {
   display: grid;
-  grid-template-columns: repeat(2, auto);
-  gap: 4px;
-  justify-content: center; /* centers grid horizontally */
+  grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+  justify-items: center;
+  gap: 6px;
 }
 
-.radio-container-column {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.radio-label {
-  display: inline-block;
+.radio-btn {
   padding: 4px 8px;
   border: 1px solid #888;
   border-radius: 4px;
   cursor: pointer;
-  text-align: center;
   user-select: none;
-  font-size: 0.9rem;
+  text-align: center;
+  font-size: 14px;
 }
 
 input[type="radio"] {
-  display: none; /* hide native radio button */
+  display: none;
 }
 
-input[type="radio"]:checked + .radio-label {
-  background-color: #333; /* fallback for non-alliance */
-  color: white;
+input[type="radio"]:checked + .radio-btn {
+  background-color: #444;
+  color: #fff;
 }
 
-/* alliance colors */
-.red-button input[type="radio"]:checked + .radio-label {
-  background-color: #c00;
-  color: white;
+.red-btn {
+  background-color: #e74c3c33; /* light red */
 }
 
-.blue-button input[type="radio"]:checked + .radio-label {
-  background-color: #0066ff;
-  color: white;
+.blue-btn {
+  background-color: #3498db33; /* light blue */
+}
+
+input[type="radio"]:checked.red-btn {
+  background-color: #e74c3c;
+  color: #fff;
+}
+
+input[type="radio"]:checked.blue-btn {
+  background-color: #3498db;
+  color: #fff;
 }
 
 .nav-row {

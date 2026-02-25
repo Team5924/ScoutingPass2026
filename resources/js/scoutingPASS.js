@@ -594,76 +594,62 @@ function addNumber(table, idx, name, data) {
 
 function addRadio(table, idx, name, data) {
   var row = table.insertRow(idx);
-  var cell1 = row.insertCell(0);
-  var cell2 = row.insertCell(1);
+  var cell = row.insertCell(0);
+  cell.style.width = ColWidth;
+  cell.classList.add("field");
 
-  cell1.style.width = ColWidth;
-  cell1.classList.add("title");
-  cell2.style.width = ColWidth;
-  cell2.classList.add("field");
+  // Add label above the buttons
+  var label = document.createElement("div");
+  label.classList.add("field-label");
+  label.innerHTML = name + (data.tooltip ? ` <span title="${data.tooltip}">(?)</span>` : "");
+  cell.appendChild(label);
 
-  cell1.innerHTML = name + '&nbsp;';
-  if (data.tooltip) cell1.setAttribute("title", data.tooltip);
+  // Container for radio buttons
+  var buttonContainer = document.createElement("div");
+  buttonContainer.classList.add("radio-container");
 
-  if (!data.hasOwnProperty('code')) {
-    cell1.innerHTML = `Error: No code specified for ${name}`;
-    return idx + 1;
-  }
+  var checked = data.defaultValue || null;
 
-  // Determine container type
-  let container = document.createElement("div");
-  if (data.code === "r") {
-    // alliance/team buttons: 2x3 grid
-    container.classList.add("radio-container-grid");
-  } else {
-    // normal radios: column
-    container.classList.add("radio-container-column");
-  }
-
-  // Add each radio button
   if (data.choices) {
-    let keys = Object.keys(data.choices);
-    keys.forEach(c => {
-      const inp = document.createElement("input");
+    Object.keys(data.choices).forEach(c => {
+      var inp = document.createElement("input");
       inp.type = "radio";
       inp.id = "input_" + data.code + "_" + c;
       inp.value = c;
       inp.name = enableGoogleSheets && data.gsCol ? data.gsCol : data.code;
-      if (data.defaultValue === c) inp.checked = true;
+      if (checked == c) inp.checked = true;
 
-      // create label
-      const label = document.createElement("label");
-      label.classList.add("radio-label");
-      label.setAttribute("for", inp.id);
-      label.innerHTML = data.choices[c];
+      // Button-like label
+      var btnLabel = document.createElement("label");
+      btnLabel.setAttribute("for", inp.id);
+      btnLabel.classList.add("radio-btn");
+      btnLabel.innerHTML = data.choices[c];
 
-      // If alliance/team, color by prefix
-      if (data.code === "r") {
-        if (c.startsWith("r")) container.classList.add("red-button");
-        if (c.startsWith("b")) container.classList.add("blue-button");
-      }
+      // Colorize alliance buttons if code contains 'r' or 'b'
+      if (c.startsWith("r")) btnLabel.classList.add("red-btn");
+      if (c.startsWith("b")) btnLabel.classList.add("blue-btn");
 
-      container.appendChild(inp);
-      container.appendChild(label);
+      buttonContainer.appendChild(inp);
+      buttonContainer.appendChild(btnLabel);
     });
   }
 
-  // hidden input for value storage
-  const hidden = document.createElement("input");
+  cell.appendChild(buttonContainer);
+
+  // hidden input to store selection
+  var hidden = document.createElement("input");
   hidden.type = "hidden";
   hidden.id = "display_" + data.code;
   hidden.value = "";
-  container.appendChild(hidden);
+  cell.appendChild(hidden);
 
   if (data.defaultValue) {
-    const def = document.createElement("input");
+    var def = document.createElement("input");
     def.type = "hidden";
     def.id = "default_" + data.code;
     def.value = data.defaultValue;
-    container.appendChild(def);
+    cell.appendChild(def);
   }
-
-  cell2.appendChild(container);
 
   return idx + 1;
 }
