@@ -61,7 +61,7 @@ html, body{
     border-color: white;
 }
 
-#auton_table, #endgame_table, #teleop_table {
+#auto_table, #endgame_table, #teleop_table {
     font-family : Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
     color: black;
     font-size: 13px;
@@ -74,11 +74,12 @@ html, body{
 
 .button {
     font-family: Roboto;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 500;
+    border-radius: 12px;
 }
 
-#autonHeader, #endgameHeader, #teleopHeader1, #teleopHeader2{
+#autoHeader, #endgameHeader, #teleopHeader1, #teleopHeader2{
     color: black;
     border-color: black;
     border-width: 4px;
@@ -126,7 +127,7 @@ html, body{
     display: table;
 }
 
-#auton{
+#auto{
 }
 
 #teleop{

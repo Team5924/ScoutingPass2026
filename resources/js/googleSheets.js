@@ -10,6 +10,8 @@ function setUpGoogleSheets() {
       btn.innerHTML = "Sending..."
 
       let fd = getData("tsv");
+      // console.log("Sending row:", payload)
+      // const res = await 
       fetch(scriptURL, {
         method: "POST",
         mode: 'no-cors',
@@ -20,6 +22,7 @@ function setUpGoogleSheets() {
         .catch(error => {
               alert('Error!', error.message)})
 
+      // console.log(res.status, await res.text())
       btn.disabled = false
       btn.innerHTML = "Send to Google Sheets"
     })

@@ -123,32 +123,24 @@ var config_data = `
     },
     { "name": "Fuel Scored",
       "code": "tfs",
-      "expectedMax": 150,
+      "expectedMax": 500,
       "altInc1": 10,
       "altInc2": 5,
       "type": "counter"
     },
     { "name": "Pass from Neutral Zone",
       "code": "pnz",
-      "expectedMax": 250,
+      "expectedMax": 500,
       "altInc1": 10,
       "altInc2": 5,
       "type": "counter"
     },
     { "name": "Pass from Opp Alliance Zone",
       "code": "poa",
-      "expectedMax": 250,
+      "expectedMax": 500,
       "altInc1": 10,
       "altInc2": 5,
       "type": "counter"
-    },
-    { "name": "Pickup from Depot",
-      "code": "tfd",
-      "type": "bool"
-    },
-    { "name": "Pickup from Outpost",
-      "code": "tfo",
-      "type": "bool"
     },
     { "name": "Pickup from Floor",
       "code": "tff",
@@ -224,32 +216,24 @@ var config_data = `
       "code": "die",
       "type": "bool"
     },
-    { "name": "Unstable",
+    { "name": "Unstable/Beached",
       "code": "tip",
       "type": "bool"
     },
-    { "name": "Beached",
-      "code": "be",
-      "type": "bool"
-    },
-    { "name": "Make good<br>alliance partner?",
-      "tooltip": "Would you want this robot on your alliance in eliminations?",
+    { "name": "Petition to DNP?",
       "code": "all",
-      "type": "bool"
-    },
-    { "name": "Was Defended",
-      "code": "def",
-      "type": "bool"
-    },
-    { "name": "Excessive Penalties",
-      "code": "pen",
       "type": "bool"
     },
     { "name": "Fuel Accuracy",
       "code": "pct",
-      "type": "number",
-      "min": 0,
-      "max": 100
+      "type": "radio",
+      "choices": {
+        "0": "0%<br>",
+        "25": "25%<br>",
+        "50": "50%<br>",
+        "75": "75%<br>",
+        "100": "100%"
+      },
     },
     { "name": "Comments",
       "code": "co",
