@@ -92,20 +92,6 @@ html, body{
   margin-bottom: 4px;
 }
 
-.field input[type="radio"] {
-    display: inline-block;
-    width: auto;
-    height: auto;
-    margin: 2px 4px;
-}
-
-.field.radio-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 4px;
-}
-
 .radio-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
