@@ -659,48 +659,44 @@ function addCheckbox(table, idx, name, data) {
   var cell1 = row.insertCell(0);
   cell1.style.width = ColWidth;
   cell1.classList.add("title");
+  
   if (!data.hasOwnProperty('code')) {
     cell1.innerHTML = `Error: No code specified for ${name}`;
     return idx + 1;
   }
+  
   var cell2 = row.insertCell(1);
   cell1.innerHTML = name + '&nbsp;';
   cell2.style.width = ColWidth;
+  
   if (data.hasOwnProperty('tooltip')) {
     cell1.setAttribute("title", data.tooltip);
   }
+  
   cell2.classList.add("field");
+
+  // Create the input checkbox
   var inp = document.createElement("input");
   inp.setAttribute("id", "input_" + data.code);
   inp.setAttribute("type", "checkbox");
+  
   if (enableGoogleSheets && data.hasOwnProperty('gsCol')) {
     inp.setAttribute("name", data.gsCol);
   } else {
     inp.setAttribute("name", data.code);
   }
-  // cell2.appendChild(inp);
 
-
+  // Create the label for the checkbox
   var lbl = document.createElement("label");
   lbl.classList.add("check-btn");
+
+  // Append the checkbox to the label (checkbox is hidden)
   lbl.appendChild(inp);
-  // cell2.appendChild(lbl);
 
-  // Create the span for the checkmark
-  var span = document.createElement("span");
-  span.classList.add("checkmark");
-  lbl.innerHTML = name + " ";  // Add the name before the checkbox
-  lbl.appendChild(span);  // Append the span after the input
-
-  // Append label to the cell
+  // Append the label to the cell
   cell2.appendChild(lbl);
 
-  // if (data.type == 'bool') {
-  //   // cell2.innerHTML += "(checked = Yes)";
-  //   // Create the input checkbox
-
-  // }
-
+  // Handle default value if it exists
   if (data.hasOwnProperty('defaultValue')) {
     var def = document.createElement("input");
     def.setAttribute("id", "default_" + data.code)
