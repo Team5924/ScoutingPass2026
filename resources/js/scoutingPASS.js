@@ -690,7 +690,7 @@ function addCheckbox(table, idx, name, data) {
   var lbl = document.createElement("label");
   lbl.classList.add("check-btn");
 
-  // Append the checkbox to the label (checkbox is hidden)
+  // Append the checkbox to the label (checkbox is visible now)
   lbl.appendChild(inp);
 
   // Append the label to the cell
@@ -703,6 +703,22 @@ function addCheckbox(table, idx, name, data) {
     def.setAttribute("type", "hidden");
     def.setAttribute("value", data.defaultValue);
     cell2.appendChild(def);
+  }
+
+  // Add event listener to handle checkbox state change
+  inp.addEventListener("change", function() {
+    if (inp.checked) {
+      lbl.style.backgroundColor = "green";  // Set background to green when checked
+    } else {
+      lbl.style.backgroundColor = "red";  // Set background to red when unchecked
+    }
+  });
+
+  // Trigger initial background color based on default state
+  if (inp.checked) {
+    lbl.style.backgroundColor = "green";
+  } else {
+    lbl.style.backgroundColor = "red";
   }
 
   return idx + 1;

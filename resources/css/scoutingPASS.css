@@ -99,11 +99,6 @@ html, body{
   color: white;
 }
 
-/* Hide the actual checkbox */
-.check-btn input[type="checkbox"] {
-  display: none;
-}
-
 /* Style the label to look like a button */
 .check-btn {
   display: inline-block;
@@ -111,15 +106,14 @@ html, body{
   margin: 5px;
   border-radius: 5px;
   cursor: pointer;
-  background-color: red; /* Default red for unchecked */
   color: white;
   text-align: center;
   user-select: none; /* Disable text selection */
 }
 
-/* Change color to green when the checkbox is checked */
-.check-btn input[type="checkbox"]:checked + .check-btn {
-  background-color: green; /* Green for checked */
+/* Ensure no default checkbox styles */
+input[type="checkbox"] {
+  display: none;  /* Hide the checkbox, it will be visually represented by the label */
 }
 
 #autonHeader, #endgameHeader, #teleopHeader1, #teleopHeader2{
