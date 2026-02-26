@@ -625,7 +625,7 @@ function addRadio(table, idx, name, data) {
       span.innerHTML = data.choices[c];
 
       // Check if the choice contains the break marker
-      if (span.innerHTML.includes("\n")) {
+      if (span.innerHTML.includes("[break]")) {
         span.innerHTML = span.innerHTML.replace("[break]", "");  // Remove the marker text
         lbl.appendChild(span);
         cell2.appendChild(lbl);
