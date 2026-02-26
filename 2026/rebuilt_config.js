@@ -41,7 +41,7 @@ var config_data = `
       "choices": {
         "r1": "Red 1",
         "r2": "Red 2",
-        "r3": "Red 3",
+        "r3": "Red 3\n",
         "b1": "Blue 1",
         "b2": "Blue 2",
         "b3": "Blue 3"
@@ -92,8 +92,8 @@ var config_data = `
       "code": "ac",
       "type": "radio",
       "choices": {
-        "15": "Climbed",
-        "a": "Attempted",
+        "15": "Climbed\n",
+        "a": "Attempted\n",
         "x": "Not Attempted"
       },
       "defaultValue": "x"
@@ -158,9 +158,9 @@ var config_data = `
       "code": "dr",
       "type": "radio",
       "choices": {
-        "0": "Not Effective",
-        "1": "Average",
-        "2": "Very Effective",
+        "0": "Not Effective\n",
+        "1": "Average\n",
+        "2": "Very Effective\n",
         "x": "Did not play defense"
       },
       "defaultValue": "x"
@@ -179,9 +179,9 @@ var config_data = `
       "code": "tc",
       "type": "radio",
       "choices": {
-        "10": "Level 1",
-        "20": "Level 2",
-        "30": "Level 3",
+        "10": "Level 1\n",
+        "20": "Level 2\n",
+        "30": "Level 3\n",
         "a": "Attempted",
         "x": "Not Attempted"
       },
@@ -191,8 +191,8 @@ var config_data = `
       "code": "tcs",
       "type": "radio",
       "choices": {
-        "1": "Left",
-        "2": "Center",
+        "1": "Left\n",
+        "2": "Center\n",
         "3": "Right"
       }
     }
@@ -202,8 +202,8 @@ var config_data = `
       "code": "ds",
       "type": "radio",
       "choices": {
-        "0": "Not Effective",
-        "1": "Average",
+        "0": "Not Effective\n",
+        "1": "Average\n",
         "2": "Very Effective"
       },
       "defaultValue": "1"
@@ -224,9 +224,9 @@ var config_data = `
       "code": "pct",
       "type": "radio",
       "choices": {
-        "1": "Low",
-        "2": "Mid",
-        "3": "High",
+        "1": "Low\n",
+        "2": "Mid\n",
+        "3": "High\n",
         "4": "Very High"
       }
     },
