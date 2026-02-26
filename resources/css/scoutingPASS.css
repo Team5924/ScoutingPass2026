@@ -69,6 +69,18 @@ html, body{
   color: black;
 }
 
+.radio-btn input[type="radio"][value^="r"] + span {
+  background-color: #ff9d9a;
+  border-color: #ff9d9a;
+  color: white;
+}
+
+.radio-btn input[type="radio"][value^="b"] + span {
+  background-color: #66b7ff;
+  border-color: #66b7ff;
+  color: white;
+}
+
 .radio-btn input[type="radio"][value^="r"]:checked + span {
   background-color: #d9534f;
   border-color: #d9534f;
