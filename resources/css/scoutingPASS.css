@@ -116,7 +116,7 @@ html, body{
 
 @media (max-width: 768px) {
   .check-btn {
-    padding: 7vw 7vw; /* Adjust padding for mobile */
+    padding: 5vw 5vw; /* Adjust padding for mobile */
   }
 }
 
