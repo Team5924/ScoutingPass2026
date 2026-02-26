@@ -615,8 +615,26 @@ function addRadio(table, idx, name, data) {
       if (checked == c) {
         inp.setAttribute("checked", "");
       }
-      cell2.appendChild(inp);
-      cell2.innerHTML += data.choices[c];
+
+      var lbl = document.createElement("label");
+      lbl.classList.add("radio-btn");
+      lbl.appendChild(inp);
+
+      // add a span for the visible text
+      var span = document.createElement("span");
+      span.innerHTML = data.choices[c];
+
+      // Check if the choice contains the break marker
+      if (span.innerHTML.includes("[break]")) {
+        span.innerHTML = span.innerHTML.replace("[break]", "");  // Remove the marker text
+        lbl.appendChild(span);
+        cell2.appendChild(lbl);
+        // Add a line break after this choice
+        cell2.appendChild(document.createElement("br"));
+      } else {
+        lbl.appendChild(span);
+        cell2.appendChild(lbl);
+      }
     });
   }
   var inp = document.createElement("input");

@@ -47,6 +47,58 @@ html, body{
     font-weight: 500;
 }
 
+/* hide the actual radio input */
+.radio-btn input[type="radio"] {
+  display: none;
+}
+
+.radio-btn span {
+  display: inline-block;
+  padding: 6px 12px;       /* size of the box */
+  margin: 2px;             /* spacing between buttons */
+  border: 1px solid #444;  /* box border */
+  border-radius: 4px;      /* rounded corners */
+  cursor: pointer;
+  user-select: none;
+  text-align: center;
+}
+
+/* highlight when selected */
+.radio-btn input[type="radio"]:checked + span {
+  background-color: rgb(239, 239, 236);
+  color: black;
+}
+
+.radio-btn input[type="radio"][value^="r"] + span {
+  border-color: #d9534f;
+  border-style: solid;
+  border-width: 1px;
+  color: white;
+}
+
+.radio-btn input[type="radio"][value^="b"] + span {
+  border-color: #0275d8;
+  border-style: solid;
+  border-width: 1px;
+  color: white;
+}
+
+.radio-btn input[type="radio"][value^="r"]:checked + span {
+  background-color: #d9534f;
+  border-color: #d9534f;
+  border-style: solid;
+  border-width: 5px;
+  color: white;
+}
+
+.radio-btn input[type="radio"][value^="b"]:checked + span {
+  background-color: #0275d8;
+  border-color: #0275d8;
+  border-style: solid;
+  border-width: 5px;
+  color: white;
+}
+
 #autonHeader, #endgameHeader, #teleopHeader1, #teleopHeader2{
     color: black;
     border-color: black;

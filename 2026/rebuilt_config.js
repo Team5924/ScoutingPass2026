@@ -22,7 +22,7 @@ var config_data = `
       "code": "l",
       "type": "level",
       "choices": {
-        "qm": "Quals<br>",
+        "qm": "Quals",
         "f": "Finals"
       },
       "defaultValue": "qm",
@@ -39,12 +39,12 @@ var config_data = `
       "code": "r",
       "type": "robot",
       "choices": {
-        "r1": "Red-1",
-        "b1": "Blue-1<br>",
-        "r2": "Red-2",
-        "b2": "Blue-2<br>",
-        "r3": "Red-3",
-        "b3": "Blue-3"
+        "r1": "Red 1",
+        "r2": "Red 2",
+        "r3": "Red 3[break]",
+        "b1": "Blue 1",
+        "b2": "Blue 2",
+        "b3": "Blue 3"
       },
       "required": "true"
     },
@@ -92,8 +92,8 @@ var config_data = `
       "code": "ac",
       "type": "radio",
       "choices": {
-        "15": "Climbed<br>",
-        "a": "Attempted<br>",
+        "15": "Climbed[break]",
+        "a": "Attempted[break]",
         "x": "Not Attempted"
       },
       "defaultValue": "x"
@@ -158,9 +158,9 @@ var config_data = `
       "code": "dr",
       "type": "radio",
       "choices": {
-        "0": "Not Effective<br>",
-        "1": "Average<br>",
-        "2": "Very Effective<br>",
+        "0": "Not Effective[break]",
+        "1": "Average[break]",
+        "2": "Very Effective[break]",
         "x": "Did not play defense"
       },
       "defaultValue": "x"
@@ -179,10 +179,10 @@ var config_data = `
       "code": "tc",
       "type": "radio",
       "choices": {
-        "10": "Level 1<br>",
-        "20": "Level 2<br>",
-        "30": "Level 3<br>",
-        "a": "Attempted<br>",
+        "10": "Level 1[break]",
+        "20": "Level 2[break]",
+        "30": "Level 3[break]",
+        "a": "Attempted[break]",
         "x": "Not Attempted"
       },
       "defaultValue": "x"
@@ -191,8 +191,8 @@ var config_data = `
       "code": "tcs",
       "type": "radio",
       "choices": {
-        "1": "Left<br>",
-        "2": "Center<br>",
+        "1": "Left[break]",
+        "2": "Center[break]",
         "3": "Right"
       }
     }
@@ -202,8 +202,8 @@ var config_data = `
       "code": "ds",
       "type": "radio",
       "choices": {
-        "0": "Not Effective<br>",
-        "1": "Average<br>",
+        "0": "Not Effective[break]",
+        "1": "Average[break]",
         "2": "Very Effective"
       },
       "defaultValue": "1"
@@ -224,9 +224,9 @@ var config_data = `
       "code": "pct",
       "type": "radio",
       "choices": {
-        "1": "Low<br>",
-        "2": "Mid<br>",
-        "3": "High<br>",
+        "1": "Low[break]",
+        "2": "Mid[break]",
+        "3": "High[break]",
         "4": "Very High"
       }
     },
