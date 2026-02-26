@@ -70,26 +70,32 @@ html, body{
 }
 
 .radio-btn input[type="radio"][value^="r"] + span {
-  background-color: #ff9d9a;
-  border-color: #ff9d9a;
+  border-color: #d9534f;
+  border-style: solid;
+  border-width: 5px;
   color: white;
 }
 
 .radio-btn input[type="radio"][value^="b"] + span {
-  background-color: #66b7ff;
-  border-color: #66b7ff;
+  border-color: #0275d8;
+  border-style: solid;
+  border-width: 5px;
   color: white;
 }
 
 .radio-btn input[type="radio"][value^="r"]:checked + span {
   background-color: #d9534f;
   border-color: #d9534f;
+  border-style: solid;
+  border-width: 5px;
   color: white;
 }
 
 .radio-btn input[type="radio"][value^="b"]:checked + span {
   background-color: #0275d8;
   border-color: #0275d8;
+  border-style: solid;
+  border-width: 5px;
   color: white;
 }
 
