@@ -72,14 +72,14 @@ html, body{
 .radio-btn input[type="radio"][value^="r"] + span {
   border-color: #d9534f;
   border-style: solid;
-  border-width: 5px;
+  border-width: 1px;
   color: white;
 }
 
 .radio-btn input[type="radio"][value^="b"] + span {
   border-color: #0275d8;
   border-style: solid;
-  border-width: 5px;
+  border-width: 1px;
   color: white;
 }
 
