@@ -41,7 +41,7 @@ var config_data = `
       "choices": {
         "r1": "Red 1",
         "r2": "Red 2",
-        "r3": "Red 3\n",
+        "r3": "Red 3[break]",
         "b1": "Blue 1",
         "b2": "Blue 2",
         "b3": "Blue 3"
@@ -92,8 +92,8 @@ var config_data = `
       "code": "ac",
       "type": "radio",
       "choices": {
-        "15": "Climbed\n",
-        "a": "Attempted\n",
+        "15": "Climbed[break]",
+        "a": "Attempted[break]",
         "x": "Not Attempted"
       },
       "defaultValue": "x"
@@ -158,9 +158,9 @@ var config_data = `
       "code": "dr",
       "type": "radio",
       "choices": {
-        "0": "Not Effective\n",
-        "1": "Average\n",
-        "2": "Very Effective\n",
+        "0": "Not Effective[break]",
+        "1": "Average[break]",
+        "2": "Very Effective[break]",
         "x": "Did not play defense"
       },
       "defaultValue": "x"
@@ -179,9 +179,9 @@ var config_data = `
       "code": "tc",
       "type": "radio",
       "choices": {
-        "10": "Level 1\n",
-        "20": "Level 2\n",
-        "30": "Level 3\n",
+        "10": "Level 1[break]",
+        "20": "Level 2[break]",
+        "30": "Level 3[break]",
         "a": "Attempted",
         "x": "Not Attempted"
       },
@@ -191,8 +191,8 @@ var config_data = `
       "code": "tcs",
       "type": "radio",
       "choices": {
-        "1": "Left\n",
-        "2": "Center\n",
+        "1": "Left[break]",
+        "2": "Center[break]",
         "3": "Right"
       }
     }
@@ -202,8 +202,8 @@ var config_data = `
       "code": "ds",
       "type": "radio",
       "choices": {
-        "0": "Not Effective\n",
-        "1": "Average\n",
+        "0": "Not Effective[break]",
+        "1": "Average[break]",
         "2": "Very Effective"
       },
       "defaultValue": "1"
@@ -224,9 +224,9 @@ var config_data = `
       "code": "pct",
       "type": "radio",
       "choices": {
-        "1": "Low\n",
-        "2": "Mid\n",
-        "3": "High\n",
+        "1": "Low[break]",
+        "2": "Mid[break]",
+        "3": "High[break]",
         "4": "Very High"
       }
     },
