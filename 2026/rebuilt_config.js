@@ -182,7 +182,7 @@ var config_data = `
         "10": "Level 1[break]",
         "20": "Level 2[break]",
         "30": "Level 3[break]",
-        "a": "Attempted",
+        "a": "Attempted[break]",
         "x": "Not Attempted"
       },
       "defaultValue": "x"
