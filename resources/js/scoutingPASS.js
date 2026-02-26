@@ -686,12 +686,11 @@ function addCheckbox(table, idx, name, data) {
   lbl.appendChild(inp);
   cell2.appendChild(lbl);
 
-  if (data.type == 'bool') {
-    // cell2.innerHTML += "(checked = Yes)";
-    if (data.hasOwnProperty('defaultValue') && data.defaultValue == "true") {
-        inp.checked = true;
-    }
-  }
+  // if (data.type == 'bool') {
+  //   // cell2.innerHTML += "(checked = Yes)";
+  //   // Create the input checkbox
+
+  // }
 
   if (data.hasOwnProperty('defaultValue')) {
     var def = document.createElement("input");
