@@ -47,6 +47,24 @@ html, body{
     font-weight: 500;
 }
 
+/* Make buttons larger */
+.counter-button {
+  width: 10px;         /* Increase button width */
+  height: 10px;        /* Increase button height */
+  font-size: 16px;     /* Increase font size */
+  padding: 12px;       /* Add more padding for better size */
+  border-radius: 4px;  /* Optional: rounded corners */
+  background-color: #007BFF; /* Optional: change button background color */
+  color: white;        /* White text */
+  border: none;        /* Remove borders */
+  cursor: pointer;     /* Pointer cursor on hover */
+  transition: background-color 0.3s; /* Optional: smooth color change on hover */
+}
+
+.counter-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
 /* hide the actual radio input */
 .radio-btn input[type="radio"] {
   display: none;

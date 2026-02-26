@@ -220,6 +220,9 @@ function addCounter(table, idx, name, data) {
     if (type === "button") {
       input.style.touchAction = 'manipulation';
     }
+
+    input.classList.add("counter-button");
+
     return input;
   };
 
@@ -232,7 +235,7 @@ function addCounter(table, idx, name, data) {
     buttonGroup.appendChild(createInput("button", `minusInc2_${data.code}`, -data.altInc2, -data.altInc2));
   }
   
-  buttonGroup.appendChild(createInput("button", `minus_${data.code}`, "-", -1));
+  buttonGroup.appendChild(createInput("button", `minus_${data.code}`, "-1", -1));
 
   // Create main counter input
   const counterInput = createInput("text", `input_${data.code}`, 0);
@@ -243,7 +246,7 @@ function addCounter(table, idx, name, data) {
   counterInput.style.cssText = 'background-color: black; color: white; border: none; text-align: center; width: 3ch;';
   buttonGroup.appendChild(counterInput);
 
-  buttonGroup.appendChild(createInput("button", `plus_${data.code}`, "+", 1));
+  buttonGroup.appendChild(createInput("button", `plus_${data.code}`, "+1", 1));
   
   if (data.altInc2) {
     buttonGroup.appendChild(createInput("button", `plusInc2_${data.code}`, `+${data.altInc2}`, data.altInc2));
