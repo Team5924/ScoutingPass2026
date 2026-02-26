@@ -99,36 +99,35 @@ html, body{
   color: white;
 }
 
-/* Hide the default checkbox */
+/* Hide the actual checkbox */
 .check-btn input[type="checkbox"] {
   display: none;
 }
 
-/* Style the checkbox like a button */
+/* Style the label to look like a button */
 .check-btn {
   display: inline-block;
-  padding: 10px 20px;  /* Button-like padding */
-  margin: 5px;  /* Spacing between buttons */
-  border-radius: 5px;  /* Rounded corners */
-  cursor: pointer;  /* Makes it look like a button */
-  background-color: white;
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: red; /* Default red for unchecked */
+  color: white;
+  text-align: center;
+  user-select: none; /* Disable text selection */
 }
 
-/* When checked, set the color to green */
-.check-btn input[type="checkbox"]:checked {
-  background-color: green;
-  border-color: green;
-  width: 50px;  /* Optional width for consistency */
-  height: 30px; /* Optional height for consistency */
+/* Change color to green when the checkbox is checked */
+.check-btn input[type="checkbox"]:checked + .check-btn {
+  background-color: green; /* Green for checked */
 }
 
-/* When not checked, set the color to red */
-.check-btn input[type="checkbox"]:not(:checked) {
+/* .check-btn input[type="checkbox"]:not(:checked) {
   background-color: red;
   border-color: red;
-  width: 50px;  /* Optional width for consistency */
-  height: 30px; /* Optional height for consistency */
-}
+  width: 50px;
+  height: 30px;
+} */
 
 #autonHeader, #endgameHeader, #teleopHeader1, #teleopHeader2{
     color: black;
