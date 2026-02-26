@@ -47,22 +47,23 @@ html, body{
     font-weight: 500;
 }
 
-/* Make buttons larger */
 .counter-button {
-  width: 20px;         /* Increase button width */
-  height: 20px;        /* Increase button height */
-  font-size: 16px;     /* Increase font size */
-  padding: 12px;       /* Add more padding for better size */
-  border-radius: 4px;  /* Optional: rounded corners */
-  background-color: #f6faff; /* Optional: change button background color */
-  color: black;        /* White text */
-  border: none;        /* Remove borders */
-  cursor: pointer;     /* Pointer cursor on hover */
-  transition: background-color 0.3s; /* Optional: smooth color change on hover */
+  width: 40px;
+  height: 40px;
+  font-size: 16px;
+  padding: 24px;
+  border-radius: 4px;
+  background-color: #f6faff;
+  color: black;
+  border: black;
+  border-width: 1px;
+  border-style: solid;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 .counter-button:hover {
-  background-color: #0056b3; /* Darker blue on hover */
+  background-color: #0056b3;
 }
 
 /* hide the actual radio input */
