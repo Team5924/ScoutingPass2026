@@ -626,6 +626,16 @@ function addRadio(table, idx, name, data) {
       lbl.appendChild(span);
       
       cell2.appendChild(lbl);
+
+      // Only add a line break for non-robot buttons
+      if (data.code !== 'r' && idx < keys.length - 1) {
+        cell2.appendChild(document.createElement("br"));
+      }
+
+      // Only add a line break for non-robot buttons
+      if (data.code !== 'r' && idx < keys.length - 1) {
+        cell2.appendChild(document.createElement("br"));
+      }
     });
   }
   var inp = document.createElement("input");
