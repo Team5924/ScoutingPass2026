@@ -659,37 +659,66 @@ function addCheckbox(table, idx, name, data) {
   var cell1 = row.insertCell(0);
   cell1.style.width = ColWidth;
   cell1.classList.add("title");
+  
   if (!data.hasOwnProperty('code')) {
     cell1.innerHTML = `Error: No code specified for ${name}`;
     return idx + 1;
   }
+  
   var cell2 = row.insertCell(1);
   cell1.innerHTML = name + '&nbsp;';
   cell2.style.width = ColWidth;
+  
   if (data.hasOwnProperty('tooltip')) {
     cell1.setAttribute("title", data.tooltip);
   }
+  
   cell2.classList.add("field");
+
+  // Create the input checkbox
   var inp = document.createElement("input");
   inp.setAttribute("id", "input_" + data.code);
   inp.setAttribute("type", "checkbox");
+  
   if (enableGoogleSheets && data.hasOwnProperty('gsCol')) {
     inp.setAttribute("name", data.gsCol);
   } else {
     inp.setAttribute("name", data.code);
   }
-  cell2.appendChild(inp);
 
-  if (data.type == 'bool') {
-    cell2.innerHTML += "(checked = Yes)";
-  }
+  // Create the label for the checkbox
+  var lbl = document.createElement("label");
+  lbl.classList.add("check-btn");
 
+  // Append the checkbox to the label (checkbox is visible now)
+  lbl.appendChild(inp);
+
+  // Append the label to the cell
+  cell2.appendChild(lbl);
+
+  // Handle default value if it exists
   if (data.hasOwnProperty('defaultValue')) {
     var def = document.createElement("input");
     def.setAttribute("id", "default_" + data.code)
     def.setAttribute("type", "hidden");
     def.setAttribute("value", data.defaultValue);
     cell2.appendChild(def);
+  }
+
+  // Add event listener to handle checkbox state change
+  inp.addEventListener("change", function() {
+    if (inp.checked) {
+      lbl.style.backgroundColor = "rgb(114, 255, 114)";
+    } else {
+      lbl.style.backgroundColor = "rgb(248, 78, 78)";
+    }
+  });
+
+  // Trigger initial background color based on default state
+  if (inp.checked) {
+    lbl.style.backgroundColor = "rgb(114, 255, 114)";
+  } else {
+    lbl.style.backgroundColor = "rgb(248, 78, 78)";
   }
 
   return idx + 1;

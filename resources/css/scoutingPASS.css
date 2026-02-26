@@ -99,6 +99,32 @@ html, body{
   color: white;
 }
 
+/* Style the label to look like a button */
+.check-btn {
+  display: inline-block;
+  padding: 15px 15px;
+  margin: 5px;
+  border-radius: 4px;
+  border-color: black;
+  border-style: solid;
+  border-width: 1px;
+  cursor: pointer;
+  color: white;
+  text-align: center;
+  user-select: none; /* Disable text selection */
+}
+
+@media (max-width: 768px) {
+  .check-btn {
+    padding: 4vw 6vw; /* Adjust padding for mobile */
+  }
+}
+
+/* Ensure no default checkbox styles */
+input[type="checkbox"] {
+  display: none;  /* Hide the checkbox, it will be visually represented by the label */
+}
+
 #autonHeader, #endgameHeader, #teleopHeader1, #teleopHeader2{
     color: black;
     border-color: black;
