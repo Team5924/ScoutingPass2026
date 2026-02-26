@@ -678,10 +678,19 @@ function addCheckbox(table, idx, name, data) {
   } else {
     inp.setAttribute("name", data.code);
   }
-  cell2.appendChild(inp);
+  // cell2.appendChild(inp);
+
+
+  var lbl = document.createElement("label");
+  lbl.classList.add("check-btn");
+  lbl.appendChild(inp);
+  cell2.appendChild(lbl);
 
   if (data.type == 'bool') {
-    cell2.innerHTML += "(checked = Yes)";
+    // cell2.innerHTML += "(checked = Yes)";
+    if (data.hasOwnProperty('defaultValue') && data.defaultValue == "true") {
+        inp.checked = true;
+    }
   }
 
   if (data.hasOwnProperty('defaultValue')) {

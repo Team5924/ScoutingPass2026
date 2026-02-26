@@ -99,6 +99,34 @@ html, body{
   color: white;
 }
 
+/* Hide the default checkbox */
+.check-btn input[type="checkbox"] {
+  display: none;
+}
+
+/* Style the checkbox like a button */
+.check-btn {
+  display: inline-block;
+  padding: 10px 20px;  /* Button-like padding */
+  margin: 5px;  /* Spacing between buttons */
+  border-radius: 5px;  /* Rounded corners */
+  cursor: pointer;  /* Makes it look like a button */
+}
+
+/* When checked, set the color to green */
+.check-btn input[type="checkbox"]:checked {
+  background-color: green;
+  width: 50px;  /* Optional width for consistency */
+  height: 30px; /* Optional height for consistency */
+}
+
+/* When not checked, set the color to red */
+.check-btn input[type="checkbox"]:not(:checked) {
+  background-color: red;
+  width: 50px;  /* Optional width for consistency */
+  height: 30px; /* Optional height for consistency */
+}
+
 #autonHeader, #endgameHeader, #teleopHeader1, #teleopHeader2{
     color: black;
     border-color: black;
