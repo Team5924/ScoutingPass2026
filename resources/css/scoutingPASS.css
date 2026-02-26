@@ -48,10 +48,10 @@ html, body{
 }
 
 .counter-button {
-  width: 40px;
-  height: 40px;
-  font-size: 16px;
-  padding: 24px;
+  width: 20px;
+  height: 20px;
+  font-size: 12px;
+  padding: 20px;
   border-radius: 4px;
   background-color: #f6faff;
   color: black;
@@ -59,11 +59,10 @@ html, body{
   border-width: 1px;
   border-style: solid;
   cursor: pointer;
-  transition: background-color 0.3s;
-}
 
-.counter-button:hover {
-  background-color: #0056b3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* hide the actual radio input */
