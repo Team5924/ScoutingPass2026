@@ -118,7 +118,7 @@ html, body{
 }
 
 /* Change color to green when the checkbox is checked */
-.check-btn input[type="checkbox"]:checked + input {
+.check-btn input[type="checkbox"]:checked + label {
   background-color: green; /* Green for checked */
 }
 
