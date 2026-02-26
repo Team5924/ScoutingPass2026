@@ -684,6 +684,15 @@ function addCheckbox(table, idx, name, data) {
   var lbl = document.createElement("label");
   lbl.classList.add("check-btn");
   lbl.appendChild(inp);
+  // cell2.appendChild(lbl);
+
+  // Create the span for the checkmark
+  var span = document.createElement("span");
+  span.classList.add("checkmark");
+  lbl.innerHTML = name + " ";  // Add the name before the checkbox
+  lbl.appendChild(span);  // Append the span after the input
+
+  // Append label to the cell
   cell2.appendChild(lbl);
 
   // if (data.type == 'bool') {
