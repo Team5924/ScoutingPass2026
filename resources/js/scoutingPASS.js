@@ -708,17 +708,17 @@ function addCheckbox(table, idx, name, data) {
   // Add event listener to handle checkbox state change
   inp.addEventListener("change", function() {
     if (inp.checked) {
-      lbl.style.backgroundColor = "green";  // Set background to green when checked
+      lbl.style.backgroundColor = "rgb(114, 255, 114)";
     } else {
-      lbl.style.backgroundColor = "red";  // Set background to red when unchecked
+      lbl.style.backgroundColor = "rgb(248, 78, 78)";
     }
   });
 
   // Trigger initial background color based on default state
   if (inp.checked) {
-    lbl.style.backgroundColor = "green";
+    lbl.style.backgroundColor = "rgb(114, 255, 114)";
   } else {
-    lbl.style.backgroundColor = "red";
+    lbl.style.backgroundColor = "rgb(248, 78, 78)";
   }
 
   return idx + 1;
