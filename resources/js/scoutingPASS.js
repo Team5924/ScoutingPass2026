@@ -243,6 +243,7 @@ function addCounter(table, idx, name, data) {
   counterInput.name = (enableGoogleSheets && data.gsCol) ? data.gsCol : data.code;
   counterInput.disabled = true;
   counterInput.maxLength = 4;
+  counterInput.value = 0;
   counterInput.style.cssText = 'background-color: black; color: white; border: none; text-align: center; width: 3ch;';
   buttonGroup.appendChild(counterInput);
 
