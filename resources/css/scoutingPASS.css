@@ -48,10 +48,10 @@ html, body{
 }
 
 .counter-button {
-  width: 20px;
-  height: 20px;
-  font-size: 12px;
-  padding: 20px;
+  width: 35px;
+  height: 35px;
+  font-size: 14px;
+  padding: 5px;
   border-radius: 4px;
   background-color: #f6faff;
   color: black;
@@ -63,6 +63,18 @@ html, body{
   display: flex;
   justify-content: center;
   align-items: center;
+
+  /* Add transition effect for hover */
+  transition: background-color 0.3s;
+}
+
+/* If you want to adjust layout on very small mobile screens, you can add this */
+@media (max-width: 600px) {
+  .counter-button {
+    width: 30px;
+    height: 30px;
+    font-size: 12px;
+  }
 }
 
 /* hide the actual radio input */
