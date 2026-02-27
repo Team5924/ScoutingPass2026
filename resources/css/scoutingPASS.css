@@ -48,8 +48,8 @@ html, body{
 }
 
 .counter-button {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   font-size: 14px;
   padding: 5px;
   border-radius: 4px;
@@ -63,15 +63,6 @@ html, body{
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-/* If you want to adjust layout on very small mobile screens, you can add this */
-@media (max-width: 600px) {
-  .counter-button {
-    width: 40px;
-    height: 40px;
-    font-size: 12px;
-  }
 }
 
 /* hide the actual radio input */
