@@ -1084,11 +1084,11 @@ function clearForm() {
       }
     } else {
       if (e.type == "number" || e.type == "text" || e.type == "hidden") {
-        if ((e.className == "counter") ||
-          (e.className == "timer") ||
-          (e.className == "cycle")) {
+        if ((e.classList.contains("counter")) ||
+            (e.classList.contains("timer")) ||
+            (e.classList.contains("cycle"))) {
           e.value = 0
-          if (e.className == "timer" || e.className == "cycle") {
+          if (e.classList.contains("timer") || e.classList.contains("cycle")) {
             // Stop interval
             timerStatus = document.getElementById("status_" + code);
             startButton = document.getElementById("start_" + code);
@@ -1100,7 +1100,7 @@ function clearForm() {
               clearInterval(intervalId);
             }
             intervalIdField.value = '';
-            if (e.className == "cycle") {
+            if (e.classList.contains("cycle")) {
               document.getElementById("cycletime_" + code).value = "[]"
               document.getElementById("display_" + code).value = ""
             }
