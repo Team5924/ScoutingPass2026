@@ -47,6 +47,24 @@ html, body{
     font-weight: 500;
 }
 
+.counter-button {
+  width: 40px;
+  height: 40px;
+  font-size: 14px;
+  padding: 5px;
+  border-radius: 4px;
+  background-color: #f6faff;
+  color: black;
+  border: black;
+  border-width: 1px;
+  border-style: solid;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /* hide the actual radio input */
 .radio-btn input[type="radio"] {
   display: none;
