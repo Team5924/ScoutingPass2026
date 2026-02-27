@@ -243,6 +243,7 @@ function addCounter(table, idx, name, data) {
   counterInput.name = (enableGoogleSheets && data.gsCol) ? data.gsCol : data.code;
   counterInput.disabled = true;
   counterInput.maxLength = 4;
+  counterInput.value = 0;
   counterInput.style.cssText = 'background-color: black; color: white; border: none; text-align: center; width: 3ch;';
   buttonGroup.appendChild(counterInput);
 
@@ -1068,22 +1069,26 @@ function clearForm() {
       var baseCode = code.substr(0, radio)
       if (e.checked) {
         e.checked = false
+        e.dispatchEvent(new Event('change'))
         document.getElementById("display_" + baseCode).value = ""
       }
-      var defaultValue = document.getElementById("default_" + baseCode).value
+      // var defaultValue = document.getElementById("default_" + baseCode).value
+      var defaultEl = document.getElementById("default_" + baseCode);
+      var defaultValue = defaultEl ? defaultEl.value : "";
       if (defaultValue != "") {
         if (defaultValue == e.value) {
           e.checked = true
+          e.dispatchEvent(new Event('change'))
           document.getElementById("display_" + baseCode).value = defaultValue
         }
       }
     } else {
       if (e.type == "number" || e.type == "text" || e.type == "hidden") {
-        if ((e.className == "counter") ||
-          (e.className == "timer") ||
-          (e.className == "cycle")) {
+        if ((e.classList.contains("counter")) ||
+            (e.classList.contains("timer")) ||
+            (e.classList.contains("cycle"))) {
           e.value = 0
-          if (e.className == "timer" || e.className == "cycle") {
+          if (e.classList.contains("timer") || e.classList.contains("cycle")) {
             // Stop interval
             timerStatus = document.getElementById("status_" + code);
             startButton = document.getElementById("start_" + code);
@@ -1095,7 +1100,7 @@ function clearForm() {
               clearInterval(intervalId);
             }
             intervalIdField.value = '';
-            if (e.className == "cycle") {
+            if (e.classList.contains("cycle")) {
               document.getElementById("cycletime_" + code).value = "[]"
               document.getElementById("display_" + code).value = ""
             }
@@ -1104,9 +1109,8 @@ function clearForm() {
           e.value = ""
         }
       } else if (e.type == "checkbox") {
-        if (e.checked == true) {
-          e.checked = false
-        }
+        e.checked = false
+        e.dispatchEvent(new Event('change'));
       } else {
         console.log("unsupported input type")
       }
