@@ -1048,28 +1048,6 @@ function clearForm() {
     e.value = "[]"
   }
 
-  // Reset checkboxes
-  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-  checkboxes.forEach(checkbox => {
-    checkbox.checked = false;
-    const label = e.closest("label");
-    if (label) {
-      label.style.backgroundColor = "rgb(248, 78, 78)";
-    }
-  });
-
-  // Reset radio buttons
-  const radios = document.querySelectorAll('input[type="radio"]');
-  radios.forEach(radio => {
-    radio.checked = false;
-  });
-
-  // Reset counter (example with `.counter` class)
-  const counters = document.querySelectorAll('.counter');
-  counters.forEach(counter => {
-    counter.value = 0;
-  });
-
   inputs = document.querySelectorAll("[id*='input_']");
   for (e of inputs) {
     code = e.id.substring(6)
@@ -1091,12 +1069,16 @@ function clearForm() {
       var baseCode = code.substr(0, radio)
       if (e.checked) {
         e.checked = false
+        e.dispatchEvent(new Event('change'))
         document.getElementById("display_" + baseCode).value = ""
       }
-      var defaultValue = document.getElementById("default_" + baseCode).value
+      // var defaultValue = document.getElementById("default_" + baseCode).value
+      var defaultEl = document.getElementById("default_" + baseCode);
+      var defaultValue = defaultEl ? defaultEl.value : "";
       if (defaultValue != "") {
         if (defaultValue == e.value) {
           e.checked = true
+          e.dispatchEvent(new Event('change'))
           document.getElementById("display_" + baseCode).value = defaultValue
         }
       }
@@ -1128,10 +1110,7 @@ function clearForm() {
         }
       } else if (e.type == "checkbox") {
         e.checked = false
-        const label = e.closest("label");
-        if (label) {
-          label.style.backgroundColor = "rgb(248, 78, 78)";
-        }
+        e.dispatchEvent(new Event('change'));
       } else {
         console.log("unsupported input type")
       }
