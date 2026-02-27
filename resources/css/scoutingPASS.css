@@ -63,16 +63,13 @@ html, body{
   display: flex;
   justify-content: center;
   align-items: center;
-
-  /* Add transition effect for hover */
-  transition: background-color 0.3s;
 }
 
 /* If you want to adjust layout on very small mobile screens, you can add this */
 @media (max-width: 600px) {
   .counter-button {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     font-size: 12px;
   }
 }
