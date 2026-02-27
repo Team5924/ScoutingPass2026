@@ -1105,12 +1105,10 @@ function clearForm() {
           e.value = ""
         }
       } else if (e.type == "checkbox") {
-        if (e.checked == true) {
-          e.checked = false
-          const label = e.closest("label");
-          if (label) {
-            label.style.backgroundColor = "rgb(248, 78, 78)";
-          }
+        e.checked = false
+        const label = e.closest("label");
+        if (label) {
+          label.style.backgroundColor = "rgb(248, 78, 78)";
         }
       } else {
         console.log("unsupported input type")
