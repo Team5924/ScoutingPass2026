@@ -1048,6 +1048,28 @@ function clearForm() {
     e.value = "[]"
   }
 
+  // Reset checkboxes
+  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  checkboxes.forEach(checkbox => {
+    checkbox.checked = false;
+    const label = e.closest("label");
+    if (label) {
+      label.style.backgroundColor = "rgb(248, 78, 78)";
+    }
+  });
+
+  // Reset radio buttons
+  const radios = document.querySelectorAll('input[type="radio"]');
+  radios.forEach(radio => {
+    radio.checked = false;
+  });
+
+  // Reset counter (example with `.counter` class)
+  const counters = document.querySelectorAll('.counter');
+  counters.forEach(counter => {
+    counter.value = 0;
+  });
+
   inputs = document.querySelectorAll("[id*='input_']");
   for (e of inputs) {
     code = e.id.substring(6)
