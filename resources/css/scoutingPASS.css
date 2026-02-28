@@ -170,13 +170,12 @@ input[type="checkbox"] {
 }
 
 .field-image-src {
-    width: 90vw;
+    width: 150px;
     max-width: 500px;
     height: auto;
     background-position: center;
     border: 1px solid;
 }
-
 
 .main-panel{
     display: none;
