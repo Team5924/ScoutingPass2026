@@ -10,6 +10,9 @@ function setUpGoogleSheets() {
       btn.innerHTML = "Sending..."
 
       let fd = getData("tsv");
+      if (pitScouting) {
+        fd = "PIT\t" + fd;
+      }
       fetch(scriptURL, {
         method: "POST",
         mode: 'no-cors',
