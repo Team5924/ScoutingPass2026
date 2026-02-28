@@ -16,7 +16,7 @@ function setUpGoogleSheets() {
       alert("First 20 chars: " + JSON.stringify(fd.substring(0, 20)));
       fetch(scriptURL, {
         method: "POST",
-        mode: 'cors',
+        mode: 'no-cors',
         body: fd
       })
         .then(response => { 
