@@ -1239,8 +1239,15 @@ function onFieldClick(event) {
   }
 
   //Turns coordinates into a numeric box
-  let box = ((Math.ceil(event.offsetY / target.height * resY) - 1) * resX) + Math.ceil(event.offsetX / target.width * resX);
-  let coords = event.offsetX + "," + event.offsetY;
+  // let box = ((Math.ceil(event.offsetY / target.height * resY) - 1) * resX) + Math.ceil(event.offsetX / target.width * resX);
+  // let coords = event.offsetX + "," + event.offsetY;
+
+  const scaleX = target.width / target.getBoundingClientRect().width;
+  const scaleY = target.height / target.getBoundingClientRect().height;
+  const adjustedX = event.offsetX * scaleX;
+  const adjustedY = event.offsetY * scaleY;
+  let box = ((Math.ceil(adjustedY / target.height * resY) - 1) * resX) + Math.ceil(adjustedX / target.width * resX);
+  let coords = adjustedX + "," + adjustedY;
 
   let allowableResponses = document.getElementById("allowableResponses" + base).value;
 

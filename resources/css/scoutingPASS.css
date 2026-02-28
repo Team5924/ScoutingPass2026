@@ -41,6 +41,12 @@ html, body{
     border-color: black;
 }
 
+.field-image-src {
+    width: 90vw;
+    max-width: 500px;
+    height: auto;
+}
+
 .button {
     font-family: Roboto;
     font-size: 16px;
