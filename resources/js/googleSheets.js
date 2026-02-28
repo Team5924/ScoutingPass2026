@@ -13,6 +13,7 @@ function setUpGoogleSheets() {
       if (pitScouting) {
         fd = "PIT\t" + fd;
       }
+      alert("First 20 chars: " + JSON.stringify(fd.substring(0, 20)));
       fetch(scriptURL, {
         method: "POST",
         mode: 'no-cors',
