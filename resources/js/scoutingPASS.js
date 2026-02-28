@@ -344,7 +344,7 @@ function addClickableImage(table, idx, name, data) {
   cell.setAttribute("style", "text-align: center;");
   var canvas = document.createElement('canvas');
   canvas.width = 150;
-  canvas.height = 150;
+  canvas.height = 200;
   //canvas.onclick = onFieldClick;
   canvas.setAttribute("onclick", "onFieldClick(event)");
   canvas.setAttribute("class", "field-image-src");
