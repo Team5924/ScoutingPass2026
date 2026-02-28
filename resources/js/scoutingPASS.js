@@ -343,6 +343,8 @@ function addClickableImage(table, idx, name, data) {
   cell.setAttribute("colspan", 2);
   cell.setAttribute("style", "text-align: center;");
   var canvas = document.createElement('canvas');
+  canvas.width = 225;
+  canvas.height = 300;
   //canvas.onclick = onFieldClick;
   canvas.setAttribute("onclick", "onFieldClick(event)");
   canvas.setAttribute("class", "field-image-src");
@@ -475,9 +477,21 @@ function addText(table, idx, name, data) {
     cell1.setAttribute("title", data.tooltip);
   }
   cell2.classList.add("field");
-  var inp = document.createElement("input");
-  inp.setAttribute("id", "input_" + data.code);
-  inp.setAttribute("type", "text");
+  // var inp = document.createElement("input");
+  // inp.setAttribute("id", "input_" + data.code);
+  // inp.setAttribute("type", "text");
+
+  if (data.hasOwnProperty('rows')) {
+    var inp = document.createElement("textarea");
+    inp.setAttribute("id", "input_" + data.code);
+    inp.setAttribute("rows", data.rows);
+    inp.style.resize = "none";
+  } else {
+    var inp = document.createElement("input");
+    inp.setAttribute("id", "input_" + data.code);
+    inp.setAttribute("type", "text");
+  }
+
   if (enableGoogleSheets && data.hasOwnProperty('gsCol')) {
     inp.setAttribute("name", data.gsCol);
   } else {
@@ -1083,7 +1097,7 @@ function clearForm() {
         }
       }
     } else {
-      if (e.type == "number" || e.type == "text" || e.type == "hidden") {
+      if (e.type == "number" || e.type == "text" || e.type == "hidden" || e.tagName == "TEXTAREA") {
         if ((e.classList.contains("counter")) ||
             (e.classList.contains("timer")) ||
             (e.classList.contains("cycle"))) {
@@ -1227,8 +1241,15 @@ function onFieldClick(event) {
   }
 
   //Turns coordinates into a numeric box
-  let box = ((Math.ceil(event.offsetY / target.height * resY) - 1) * resX) + Math.ceil(event.offsetX / target.width * resX);
-  let coords = event.offsetX + "," + event.offsetY;
+  // let box = ((Math.ceil(event.offsetY / target.height * resY) - 1) * resX) + Math.ceil(event.offsetX / target.width * resX);
+  // let coords = event.offsetX + "," + event.offsetY;
+
+  const scaleX = target.width / target.getBoundingClientRect().width;
+  const scaleY = target.height / target.getBoundingClientRect().height;
+  const adjustedX = event.offsetX * scaleX;
+  const adjustedY = event.offsetY * scaleY;
+  let box = ((Math.ceil(adjustedY / target.height * resY) - 1) * resX) + Math.ceil(adjustedX / target.width * resX);
+  let coords = adjustedX + "," + adjustedY;
 
   let allowableResponses = document.getElementById("allowableResponses" + base).value;
 

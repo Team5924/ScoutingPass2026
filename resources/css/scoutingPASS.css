@@ -41,6 +41,7 @@ html, body{
     border-color: black;
 }
 
+
 .button {
     font-family: Roboto;
     font-size: 16px;
@@ -168,7 +169,10 @@ input[type="checkbox"] {
     margin: 2vw;
 }
 
-.field-image-src{
+.field-image-src {
+    width: 225px;
+    max-width: 500px;
+    height: auto;
     background-position: center;
     border: 1px solid;
 }
