@@ -1095,7 +1095,7 @@ function clearForm() {
         }
       }
     } else {
-      if (e.type == "number" || e.type == "text" || e.type == "hidden") {
+      if (e.type == "number" || e.type == "text" || e.type == "hidden" || e.tagName == "TEXTAREA") {
         if ((e.classList.contains("counter")) ||
             (e.classList.contains("timer")) ||
             (e.classList.contains("cycle"))) {

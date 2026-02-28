@@ -191,9 +191,9 @@ var config_data = `
       "code": "tcs",
       "type": "radio",
       "choices": {
-        "1": "Left[break]",
-        "2": "Center[break]",
-        "3": "Right"
+        "l": "Left[break]",
+        "c": "Center[break]",
+        "r": "Right"
       }
     }
   ],
