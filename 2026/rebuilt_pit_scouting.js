@@ -19,14 +19,17 @@ var config_data = `
       "type": "number",
       "defaultValue": "0"
     },
+    { "name": "How many fuel can hopper hold?",
+      "code": "hcap",
+      "type": "number",
+      "defaultValue": "0"
+    },
     { "name": "Drivetrain",
       "code": "drv",
       "type": "radio",
       "choices": {
-        "s": "Swerve<br>",
-        "w": "West Coast/Tank<br>",
-        "b": "Butterfly/Grashopper<br>",
-        "m": "Mechanum<br>",
+        "s": "Swerve[break]",
+        "t": "Tank[break]",
         "o": "Other"
       },
       "defaultValue": "o"
@@ -37,63 +40,75 @@ var config_data = `
       "size": 20,
       "maxSize": 50
     },
-    { "name": "Swerve Ratio",
-      "code": "sr",
-      "type": "radio",
-      "choices": {
-        "1": "L1 (8.14:1)<br>",
-        "2": "L2 (6.75:1)<br>",
-        "3": "L3 (6.12:1)<br>",
-        "4": "L4 (5.14:1)<br>",
-        "o": "Other ratio (put in comments)<br>",
-        "x": "Not Swerve"
-      },
-      "defaultValue":"x"
+    { "name": "Speed",
+      "code": "spd",
+      "type": "number"
     },
-    { "name": "Drivetrain Motor",
-      "code": "mot",
-      "type": "radio",
-      "choices": {
-        "n": "Neo<br>",
-        "f": "Falcon<br>",
-        "c": "CIM<br>",
-        "x": "Other<br>"
-      },
-      "defaultValue":"x"
+    { "name": "Fits under trench?",
+      "code": "fut",
+      "type": "bool"
+    },
+    { "name": "Drives over ramp?",
+      "code": "dor",
+      "type": "bool"
+    },
+    { "name": "Ground Intake",
+      "code": "gin",
+      "type": "bool"
+    },
+    { "name": "Climb L1",
+      "code": "l1",
+      "type": "bool"
+    },
+    { "name": "Climb L2",
+      "code": "l2",
+      "type": "bool"
+    },
+    { "name": "Climb L3",
+      "code": "l3",
+      "type": "bool"
+    },
+    { "name": "How does it climb?",
+      "code": "hwc",
+      "type": "text",
+      "size": 15,
+      "maxSize": 250,
+      "rows": 3
+    },
+    { "name": "Experience with shuffling?",
+      "code": "shuf",
+      "type": "text",
+      "size": 20,
+      "maxSize": 250
     },
     { "name": "# of Batteries",
       "code": "nob",
       "type": "number"
     },
-    { "name": "Floor pickup Fuel",
-      "code": "fpu",
-      "type": "bool"
-    },
-    { "name": "Depot pickup Fuel",
-      "code": "dpu",
-      "type": "bool"
-    },
-    { "name": "Outpost pickup Fuel",
-      "code": "opu",
-      "type": "bool"
-    },
     { "name": "Autos",
       "code": "aut",
       "type": "text",
-      "size": 20,
-      "maxSize": 250
+      "size": 15,
+      "maxSize": 250,
+      "rows": 5
     },
-    { "name": "Scouting Method /<br>Program (ScoutingPASS?)",
-      "code": "sct",
+    { "name": "How does it shoot? (Vision assisted, turret, adjustable hood, etc)",
+      "code": "hws",
       "type": "text",
       "size": 20,
-      "maxSize": 250
+      "maxSize": 250,
+      "rows": 5
+    },
+    { "name": "Upload photo to Google Form!",
+      "code": "upl",
+      "type": "bool"
     },
     { "name": "Comments",
       "code": "co",
       "type": "text",
-      "size": 20,
-      "maxSize": 250
+      "size": 15,
+      "maxSize": 250,
+      "rows": 5
     }
   ],
   "auton": [
