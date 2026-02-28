@@ -479,10 +479,16 @@ function addText(table, idx, name, data) {
   // inp.setAttribute("id", "input_" + data.code);
   // inp.setAttribute("type", "text");
 
-  var inp = document.createElement("textarea");
-  inp.setAttribute("id", "input_" + data.code);
-  inp.setAttribute("rows", data.hasOwnProperty('rows') ? data.rows : 1);
-  inp.style.resize = "none";
+  if (data.hasOwnProperty('rows')) {
+    var inp = document.createElement("textarea");
+    inp.setAttribute("id", "input_" + data.code);
+    inp.setAttribute("rows", data.rows);
+    inp.style.resize = "none";
+  } else {
+    var inp = document.createElement("input");
+    inp.setAttribute("id", "input_" + data.code);
+    inp.setAttribute("type", "text");
+  }
 
   if (enableGoogleSheets && data.hasOwnProperty('gsCol')) {
     inp.setAttribute("name", data.gsCol);
