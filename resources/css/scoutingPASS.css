@@ -41,11 +41,6 @@ html, body{
     border-color: black;
 }
 
-.field-image-src {
-    width: 90vw;
-    max-width: 500px;
-    height: auto;
-}
 
 .button {
     font-family: Roboto;
@@ -174,10 +169,14 @@ input[type="checkbox"] {
     margin: 2vw;
 }
 
-.field-image-src{
+.field-image-src {
+    width: 90vw;
+    max-width: 500px;
+    height: auto;
     background-position: center;
     border: 1px solid;
 }
+
 
 .main-panel{
     display: none;
