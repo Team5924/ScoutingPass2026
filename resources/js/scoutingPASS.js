@@ -475,9 +475,15 @@ function addText(table, idx, name, data) {
     cell1.setAttribute("title", data.tooltip);
   }
   cell2.classList.add("field");
-  var inp = document.createElement("input");
+  // var inp = document.createElement("input");
+  // inp.setAttribute("id", "input_" + data.code);
+  // inp.setAttribute("type", "text");
+
+  var inp = document.createElement("textarea");
   inp.setAttribute("id", "input_" + data.code);
-  inp.setAttribute("type", "text");
+  inp.setAttribute("rows", data.hasOwnProperty('rows') ? data.rows : 1);
+  inp.style.resize = "none";
+
   if (enableGoogleSheets && data.hasOwnProperty('gsCol')) {
     inp.setAttribute("name", data.gsCol);
   } else {
