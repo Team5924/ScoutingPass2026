@@ -14,6 +14,11 @@ var config_data = `
       "type": "number",
       "defaultValue": "0"
     },
+    { "name": "Length",
+      "code": "len",
+      "type": "number",
+      "defaultValue": "0"
+    },
     { "name": "Weight",
       "code": "wei",
       "type": "number",
@@ -74,12 +79,6 @@ var config_data = `
       "size": 15,
       "maxSize": 250,
       "rows": 3
-    },
-    { "name": "Experience with shuffling?",
-      "code": "shuf",
-      "type": "text",
-      "size": 20,
-      "maxSize": 250
     },
     { "name": "# of Batteries",
       "code": "nob",
