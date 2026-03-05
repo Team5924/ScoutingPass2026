@@ -351,21 +351,21 @@
 
 		// ── Data collection + QR ─────────────────────────────
 		function qualCollectData() {
-			const scouter = document.getElementById("q-scouter").value.trim();
-			const event   = document.getElementById("q-event").value.trim();
-			const match   = document.getElementById("q-match").value.trim();
-			let out = ["qs", scouter, event, match].join("\t");
+			// const scouter = document.getElementById("q-scouter").value.trim();
+			// const event   = document.getElementById("q-event").value.trim();
+			const match = document.getElementById("q-match").value.trim();
+			let out = "";
 
 			qualTeams.forEach(t => {
-				const tier  = qualGetTier(t.number);
+				const tier = qualGetTier(t.number);
 				const notes = (document.getElementById("qnotes-"+t.number)?.value||"").replace(/[\t\n\r]/g," ");
-				out += "\n" + [t.number, t.alliance[0].toUpperCase(), tier, notes].join("\t");
+				out += "\n" + [match, t.number, t.alliance[0].toUpperCase(), tier, notes].join("\t");
 			});
 
 			document.querySelectorAll(".qual-rank-list").forEach(list => {
-				const tier  = list.dataset.tier;
+				const tier = list.dataset.tier;
 				const order = Array.from(list.querySelectorAll(".qual-rank-item")).map(el=>el.dataset.num).join("\t");
-				out += "\nTIER_RANK\t" + tier + "\t" + order;
+				out += "\n" + match + "\tTIER_RANK\t" + tier + "\t" + order;
 			});
 
 			return out;
