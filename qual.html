@@ -17,7 +17,7 @@
 				<div id="qual-page1" class="main-panel" style="display:block; background-color:black; text-align:center;">
 					<h1 class="page_title"><span class="odd">Golden Gate Robotics</span></h1>
 					<h2>Qualitative Scouting</h2>
-					<p class="match-label"><input type="button" value="Next" id="nextButton1" onclick="swipePage(2)"></p>
+					<p class="match-label"><input type="button" value="Next" id="nextButton1" onclick="qualNextPage()"></p>
 
 					<table id="qual-setup-table" style="max-width:500px; margin:0 auto;">
 						<tr>
@@ -43,44 +43,37 @@
 					</table>
 
 					<div id="qual-teams-section" style="display:none">
-						<table id="qual-teams-table"></table>
+						<table id="qual-teams-table" style="max-width:500px; margin:0 auto;"></table>
 					</div>
 
-					<!-- <p class="match-label"><input type="button" value="Next" onclick="qualNextPage()"></p> -->
-					<p class="match-label"><input type="button" value="Next" id="nextButton1" onclick="swipePage(2)"></p>
+					<p class="match-label"><input type="button" value="Next" id="nextButton2" onclick="qualNextPage()"></p>
 				</div>
 
 				<!-- PAGE 2: Tier + Ranking -->
-				<div id="qual-page2" class="main-panel" style="display:block; background-color:black; text-align:center;">
+				<div id="qual-page2" class="main-panel" style="background-color:black; text-align:center;">
 					<h1 class="page_title"><span class="odd">Golden Gate Robotics</span></h1>
 					<h2>Tier &amp; Ranking</h2>
 					<p class="match-label">
-						<!-- <input type="button" value="Prev" onclick="qualPrevPage()">
-						<input type="button" value="Next" onclick="qualNextPage()"> -->
-						<p class="match-label"><input type="button" value="Prev" id="prevButton1" onclick="swipePage(1)"></p>
-						<p class="match-label"><input type="button" value="Next" id="nextButton2" onclick="swipePage(2)"></p>
-
+						<input type="button" value="Prev" id="prevButton1" onclick="qualPrevPage()">
+						<input type="button" value="Next" id="nextButton3" onclick="qualNextPage()">
 					</p>
-					<table style="border:none">
-						<tr><td style="border:none; padding:4px 10px">
+					<table style="border:none; max-width:500px; margin:0 auto;">
+						<tr><td style="border:none; padding:4px 10px;">
 							<p class="qual-hint">Assign each team a tier. If 2+ teams share a tier, drag to rank them against each other (optional).</p>
 							<div id="qual-tier-section"></div>
 						</td></tr>
 					</table>
 					<p class="match-label">
-						<!-- <input type="button" value="Prev" onclick="qualPrevPage()">
-						<input type="button" value="Next" onclick="qualNextPage()"> -->
-						<p class="match-label"><input type="button" value="Prev" id="prevButton2" onclick="swipePage(2)"></p>
-						<p class="match-label"><input type="button" value="Next" id="nextButton3" onclick="swipePage(3)"></p>
+						<input type="button" value="Prev" id="prevButton2" onclick="qualPrevPage()">
+						<input type="button" value="Next" id="nextButton4" onclick="qualNextPage()">
 					</p>
 				</div>
 
 				<!-- PAGE 3: QR Code -->
-				<div id="qr-code" class="main-panel" style="display:block; background-color: white; text-align:center;">
+				<div id="qr-code" class="main-panel" style="background-color: white; text-align:center;">
 					<h1 id="qrHeader1" class="page_title"><span class="odd">Golden Gate Robotics</span></h1>
 					<h2 id="qrHeader2">Generate QR Code</h2>
-					<!-- <p class="match-label"><input type="button" value="Prev" id="prevButton9" onclick="qualPrevPage()"></p> -->
-					<p class="match-label"><input type="button" value="Prev" id="prevButton3" onclick="swipePage(2)"></p>
+					<p class="match-label"><input type="button" value="Prev" id="prevButton3" onclick="qualPrevPage()"></p>
 					<p id="qr-info"><span id="display_qr-info" style="border:none; text-align:center;"></span></p>
 					<table id="qr-table">
 						<tr>
@@ -189,7 +182,6 @@
 					+ " — <strong>"+team.number+"</strong>"
 					+ (team.name ? " · "+team.name : "");
 
-
 				const cRow = tbl.insertRow();
 				cRow.insertCell().innerHTML = "<span class='qual-label'>Comments</span>";
 				cRow.insertCell().innerHTML = `<textarea id="qnotes-${team.number}" class="qual-textarea" rows="2" placeholder="Notes…"></textarea>`;
@@ -244,7 +236,6 @@
 		function qualRenderRankGroups() {
 			const div = document.getElementById("qual-rank-groups");
 
-			// Snapshot existing order before re-render
 			const prevOrder = {};
 			div.querySelectorAll(".qual-rank-list").forEach(list => {
 				prevOrder[list.dataset.tier] = Array.from(list.querySelectorAll(".qual-rank-item")).map(el=>el.dataset.num);
@@ -274,7 +265,6 @@
 				list.className = "qual-rank-list";
 				list.dataset.tier = tier;
 
-				// Preserve prior drag order if available
 				let ordered = groups[tier];
 				if (prevOrder[tier]) {
 					const reordered = prevOrder[tier].map(n=>groups[tier].find(t=>t.number===n)).filter(Boolean);
@@ -301,7 +291,6 @@
 		let qualDragSrc = null;
 
 		function qualAddDragHandlers(li, list) {
-			// Mouse
 			li.addEventListener("dragstart", e => {
 				qualDragSrc = li;
 				li.classList.add("qual-dragging");
@@ -328,7 +317,6 @@
 					else         list.insertBefore(qualDragSrc, li);
 				}
 			});
-			// Touch
 			li.addEventListener("touchstart", e => {
 				qualDragSrc = li;
 				li.classList.add("qual-dragging");
@@ -363,11 +351,9 @@
 			let out = ["qs", scouter, event, match].join("\t");
 
 			qualTeams.forEach(t => {
-				const def   = (document.querySelector(`input[name="qdef-${t.number}"]:checked`)||{}).value||"";
-				const sht   = (document.querySelector(`input[name="qsht-${t.number}"]:checked`)||{}).value||"";
 				const tier  = qualGetTier(t.number);
 				const notes = (document.getElementById("qnotes-"+t.number)?.value||"").replace(/[\t\n\r]/g," ");
-				out += "\n" + [t.number, t.alliance[0].toUpperCase(), tier, def, sht, notes].join("\t");
+				out += "\n" + [t.number, t.alliance[0].toUpperCase(), tier, notes].join("\t");
 			});
 
 			document.querySelectorAll(".qual-rank-list").forEach(list => {
