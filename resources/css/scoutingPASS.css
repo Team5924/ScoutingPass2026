@@ -311,14 +311,14 @@ h1 .odd {
     font-family: Roboto;
     font-weight: 500;
     text-align: center;
-    color: #0AB4EC;
+    color: #C0362C;
 }
 
 h1 .even {
     font-family: Roboto;
     font-weight: 500;
     text-align: center;
-    color: #42B333;
+    color: #C0362C;
 }
 
 table {
@@ -356,4 +356,153 @@ input {
 #data {
     font-family:'Lucida Console', 'monospace';
     text-align: justify;
+}
+
+/* ── Qualitative scouting additions ─────────────────────────────────────── */
+
+.qual-status-msg {
+    font-style: italic;
+    font-size: 0.9em;
+    text-align: center;
+    padding: 4px 0 8px;
+    min-height: 1.4em;
+}
+
+.qual-hint {
+    font-size: 0.85em;
+    font-style: italic;
+    color: #ccc;
+    margin: 0 0 10px;
+}
+
+.qual-divider {
+    border: none;
+    border-top: 1px solid #666;
+    margin: 6px 0;
+}
+
+.qual-team-header {
+    font-weight: bold;
+    font-size: 1.0em;
+    padding: 8px 4px 4px;
+}
+
+.qual-red  { color: #ff6666; }
+.qual-blue { color: #6699ff; }
+
+.qual-label {
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+.qual-radio {
+    font-size: 0.88em;
+    margin-right: 6px;
+    white-space: nowrap;
+}
+
+.qual-radio input[type="radio"] {
+    display: inline; /* override the hidden rule for checkboxes */
+    width: auto;
+}
+
+.qual-textarea {
+    width: 98%;
+    font-size: 0.9em;
+    padding: 4px;
+    box-sizing: border-box;
+    background-color: white;
+    color: black;
+}
+
+/* Tier row */
+.qual-tier-row {
+    display: grid;
+    grid-template-columns: 140px repeat(5, 1fr);
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 6px;
+}
+
+.qual-tier-team {
+    font-weight: bold;
+    font-size: 0.9em;
+    min-width: 130px;
+}
+
+.qual-tier-pills {
+    display: contents; /* lets each pill sit directly in the grid */
+}
+
+.qual-tier-pill {
+    display: block;
+    text-align: center;
+    padding: 4px 9px;
+    border: 1px solid #888;
+    border-radius: 4px;
+    font-size: 0.8em;
+    cursor: pointer;
+    user-select: none;
+    color: white;
+}
+
+.qual-tier-pill input[type="radio"] {
+    display: none;
+}
+
+.qual-tier-pill:has(input:checked) {
+    background-color: rgb(151, 199, 240);
+    color: black;
+    border-color: white;
+}
+
+/* Within-tier drag ranking */
+.qual-rank-group {
+    margin: 14px 0 6px;
+}
+
+.qual-rank-group-label {
+    font-size: 0.82em;
+    font-style: italic;
+    color: #bbb;
+    margin-bottom: 4px;
+}
+
+.qual-rank-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.qual-rank-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid #888;
+    border-radius: 4px;
+    padding: 6px 10px;
+    margin-bottom: 5px;
+    cursor: grab;
+    font-size: 0.92em;
+    background-color: rgba(255,255,255,0.08);
+    touch-action: none;
+}
+
+.qual-rank-item:active { cursor: grabbing; }
+
+.qual-rank-item.qual-dragging  { opacity: 0.4; }
+
+.qual-rank-item.qual-drag-over {
+    border: 1px dashed #fff;
+    background-color: rgba(255,255,255,0.22);
+}
+
+.qual-drag-handle {
+    opacity: 0.5;
+    font-size: 1.1em;
+}
+
+.qual-rank-name {
+    font-size: 0.85em;
+    opacity: 0.75;
 }
