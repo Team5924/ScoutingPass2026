@@ -363,9 +363,9 @@
 			});
 
 			document.querySelectorAll(".qual-rank-list").forEach(list => {
-				const tier = list.dataset.tier;
-				const order = Array.from(list.querySelectorAll(".qual-rank-item")).map(el=>el.dataset.num).join("\t");
-				out += "\n" + match + "\tTIER_RANK\t" + tier + "\t" + order;
+				const tier  = list.dataset.tier;
+				const order = Array.from(list.querySelectorAll(".qual-rank-item")).map(el=>el.dataset.num).join(" > ");
+				out += "\n" + [match, "TIER_RANK", tier, order].join("\t");
 			});
 
 			return out;
