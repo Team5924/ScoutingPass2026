@@ -95,6 +95,9 @@
 					<div id="submitButton">
 						<button id="submit" type="submit" class="submitForm">Send to Google Sheets</button>
 					</div>
+					<div id="submitButton">
+						<button id="submit" type="button" class="submitForm" onclick="qualSendToSheets()">Send to Google Sheets</button>
+					</div>
 					<div id="clearButton">
 						<button type="button" class="clearForm" onclick="qualClearForm()">Clear Form</button>
 					</div>
@@ -418,7 +421,11 @@
 			qualSetStatus("", false);
 			qualShowPage(0);
 		}
-
+		// Shim so googleSheets.js works on this page
+		function getData() {
+			return qualCollectData();
+		}
+		var pitScouting = false;
 		setUpGoogleSheets();
 		</script>
 		<script src="resources/js/googleSheets.js"></script>
