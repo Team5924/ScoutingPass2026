@@ -14,19 +14,19 @@
 			<div id="main-panel-holder">
 
 				<!-- PAGE 1: Setup + Team Observations -->
-				<div id="qual-page1" class="main-panel" style="display:block; background-color: black;">
-					<h1 class="page_title"><span class="odd">P</span><span class="even">W</span><span class="odd">N</span><span class="even">A</span><span class="odd">G</span><span class="even">E</span><br>Scouting PASS</h1>
+				<div id="qual-page1" class="main-panel" style="display:block; background-color:black; text-align:center;"></div>
+					<h1 class="page_title"><span class="odd">Golden Gate Robotics</span></h1>
 					<h2>Qualitative Scouting</h2>
-					<p class="match-label"><input type="button" value="Next" onclick="qualNextPage()"></p>
+					<p class="match-label"><input type="button" value="Next" id="nextButton1" onclick="swipePage(2)"></p>
 
-					<table id="qual-setup-table">
+					<table id="qual-setup-table" style="max-width:500px; margin:0 auto;"></table>
 						<tr>
 							<td class="title">Scouter</td>
 							<td class="field"><input type="text" id="q-scouter" size="16" maxlength="20"></td>
 						</tr>
 						<tr>
 							<td class="title">Event Code</td>
-							<td class="field"><input type="text" id="q-event" size="12" maxlength="20" placeholder="2026txhou"></td>
+							<td class="field"><input type="text" id="q-event" size="12" maxlength="20" placeholder="2026cahal"></td>
 						</tr>
 						<tr>
 							<td class="title">Match #</td>
@@ -46,16 +46,20 @@
 						<table id="qual-teams-table"></table>
 					</div>
 
-					<p class="match-label"><input type="button" value="Next" onclick="qualNextPage()"></p>
+					<!-- <p class="match-label"><input type="button" value="Next" onclick="qualNextPage()"></p> -->
+					<p class="match-label"><input type="button" value="Next" id="nextButton1" onclick="swipePage(2)"></p>
 				</div>
 
 				<!-- PAGE 2: Tier + Ranking -->
-				<div id="qual-page2" class="main-panel" style="background-color: black;">
-					<h1 class="page_title"><span class="odd">P</span><span class="even">W</span><span class="odd">n</span><span class="even">A</span><span class="odd">G</span><span class="even">E</span><br>Scouting PASS</h1>
+				<div id="qual-page2" class="main-panel" style="display:block; background-color:black; text-align:center;"></div>
+					<h1 class="page_title"><span class="odd">Golden Gate Robotics</span></h1>
 					<h2>Tier &amp; Ranking</h2>
 					<p class="match-label">
-						<input type="button" value="Prev" onclick="qualPrevPage()">
-						<input type="button" value="Next" onclick="qualNextPage()">
+						<!-- <input type="button" value="Prev" onclick="qualPrevPage()">
+						<input type="button" value="Next" onclick="qualNextPage()"> -->
+						<p class="match-label"><input type="button" value="Prev" id="prevButton1" onclick="swipePage(1)"></p>
+						<p class="match-label"><input type="button" value="Next" id="nextButton2" onclick="swipePage(2)"></p>
+
 					</p>
 					<table style="border:none">
 						<tr><td style="border:none; padding:4px 10px">
@@ -64,16 +68,19 @@
 						</td></tr>
 					</table>
 					<p class="match-label">
-						<input type="button" value="Prev" onclick="qualPrevPage()">
-						<input type="button" value="Next" onclick="qualNextPage()">
+						<!-- <input type="button" value="Prev" onclick="qualPrevPage()">
+						<input type="button" value="Next" onclick="qualNextPage()"> -->
+						<p class="match-label"><input type="button" value="Prev" id="prevButton2" onclick="swipePage(2)"></p>
+						<p class="match-label"><input type="button" value="Next" id="nextButton3" onclick="swipePage(3)"></p>
 					</p>
 				</div>
 
 				<!-- PAGE 3: QR Code -->
-				<div id="qr-code" class="main-panel" style="background-color: white;">
-					<h1 id="qrHeader1" class="page_title"><span class="odd">P</span><span class="even">W</span><span class="odd">n</span><span class="even">A</span><span class="odd">G</span><span class="even">E</span><br>Scouting PASS</h1>
+				<div id="qr-code" class="main-panel" style="display:block; background-color: white; text-align:center;">
+					<h1 id="qrHeader1" class="page_title"><span class="odd">Golden Gate Robotics</span></h1>
 					<h2 id="qrHeader2">Generate QR Code</h2>
-					<p class="match-label"><input type="button" value="Prev" id="prevButton9" onclick="qualPrevPage()"></p>
+					<!-- <p class="match-label"><input type="button" value="Prev" id="prevButton9" onclick="qualPrevPage()"></p> -->
+					<p class="match-label"><input type="button" value="Prev" id="prevButton3" onclick="swipePage(2)"></p>
 					<p id="qr-info"><span id="display_qr-info" style="border:none; text-align:center;"></span></p>
 					<table id="qr-table">
 						<tr>
@@ -182,19 +189,6 @@
 					+ " — <strong>"+team.number+"</strong>"
 					+ (team.name ? " · "+team.name : "");
 
-				const defRow = tbl.insertRow();
-				defRow.insertCell().innerHTML = "<span class='qual-label'>Defense</span>";
-				const defTd = defRow.insertCell();
-				["None","Poor","Fair","Good","Excellent"].forEach(v => {
-					defTd.innerHTML += `<label class="qual-radio"><input type="radio" name="qdef-${team.number}" value="${v}"> ${v}</label> `;
-				});
-
-				const shtRow = tbl.insertRow();
-				shtRow.insertCell().innerHTML = "<span class='qual-label'>Pass/Shoot</span>";
-				const shtTd = shtRow.insertCell();
-				["None","Weak","Average","Strong","Elite"].forEach(v => {
-					shtTd.innerHTML += `<label class="qual-radio"><input type="radio" name="qsht-${team.number}" value="${v}"> ${v}</label> `;
-				});
 
 				const cRow = tbl.insertRow();
 				cRow.insertCell().innerHTML = "<span class='qual-label'>Comments</span>";
