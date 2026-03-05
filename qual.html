@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, maximum-scale=1.0">
+		<title>Scouting PASS</title>
+		<link rel="shortcut icon" href="favicon.ico">
+		<link rel="icon" sizes="16x16 32x32 64x64" href="favicon.ico">
+		<script src="resources/js/easy.qrcode.min.js"></script>
+		<link rel="stylesheet" href="resources/css/scoutingPASS.css">
+	</head>
+
+	<body>
+		<form id="scoutingForm" onsubmit="return false">
+			<div id="main-panel-holder">
+
+				<!-- PAGE 1: Setup + Team Observations -->
+				<div id="qual-page1" class="main-panel" style="display:block; background-color: black;">
+					<h1 class="page_title"><span class="odd">P</span><span class="even">W</span><span class="odd">N</span><span class="even">A</span><span class="odd">G</span><span class="even">E</span><br>Scouting PASS</h1>
+					<h2>Qualitative Scouting</h2>
+					<p class="match-label"><input type="button" value="Next" onclick="qualNextPage()"></p>
+
+					<table id="qual-setup-table">
+						<tr>
+							<td class="title">Scouter</td>
+							<td class="field"><input type="text" id="q-scouter" size="16" maxlength="20"></td>
+						</tr>
+						<tr>
+							<td class="title">Event Code</td>
+							<td class="field"><input type="text" id="q-event" size="12" maxlength="20" placeholder="2026txhou"></td>
+						</tr>
+						<tr>
+							<td class="title">Match #</td>
+							<td class="field"><input type="number" id="q-match" size="5" min="1" max="200"></td>
+						</tr>
+						<tr>
+							<td colspan="2" style="text-align:center">
+								<input type="button" value="Load Match from TBA" onclick="qualLoadMatch()">
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2"><div id="qual-status" class="qual-status-msg"></div></td>
+						</tr>
+					</table>
+
+					<div id="qual-teams-section" style="display:none">
+						<table id="qual-teams-table"></table>
+					</div>
+
+					<p class="match-label"><input type="button" value="Next" onclick="qualNextPage()"></p>
+				</div>
+
+				<!-- PAGE 2: Tier + Ranking -->
+				<div id="qual-page2" class="main-panel" style="background-color: black;">
+					<h1 class="page_title"><span class="odd">P</span><span class="even">W</span><span class="odd">n</span><span class="even">A</span><span class="odd">G</span><span class="even">E</span><br>Scouting PASS</h1>
+					<h2>Tier &amp; Ranking</h2>
+					<p class="match-label">
+						<input type="button" value="Prev" onclick="qualPrevPage()">
+						<input type="button" value="Next" onclick="qualNextPage()">
+					</p>
+					<table style="border:none">
+						<tr><td style="border:none; padding:4px 10px">
+							<p class="qual-hint">Assign each team a tier. If 2+ teams share a tier, drag to rank them against each other (optional).</p>
+							<div id="qual-tier-section"></div>
+						</td></tr>
+					</table>
+					<p class="match-label">
+						<input type="button" value="Prev" onclick="qualPrevPage()">
+						<input type="button" value="Next" onclick="qualNextPage()">
+					</p>
+				</div>
+
+				<!-- PAGE 3: QR Code -->
+				<div id="qr-code" class="main-panel" style="background-color: white;">
+					<h1 id="qrHeader1" class="page_title"><span class="odd">P</span><span class="even">W</span><span class="odd">n</span><span class="even">A</span><span class="odd">G</span><span class="even">E</span><br>Scouting PASS</h1>
+					<h2 id="qrHeader2">Generate QR Code</h2>
+					<p class="match-label"><input type="button" value="Prev" id="prevButton9" onclick="qualPrevPage()"></p>
+					<p id="qr-info"><span id="display_qr-info" style="border:none; text-align:center;"></span></p>
+					<table id="qr-table">
+						<tr>
+							<td width="5%">&nbsp;</td>
+							<td width="90%"><div id="qrcode" style="text-align:center"></div></td>
+							<td width="5%">&nbsp;</td>
+						</tr>
+						<tr>
+							<td width="5%">&nbsp;</td>
+							<td width="90%"><div><p id="data" style="text-align:center; display:none"></p></div></td>
+							<td width="5%">&nbsp;</td>
+						</tr>
+					</table>
+					<p></p>
+					<p class="match-label">
+						<input type="button" value="Display Data" id="displayButton" onclick="qualDisplayData()">
+						<input type="button" value="Copy Data" id="copyButton" onclick="qualCopyData()">
+					</p>
+					<div id="clearButton">
+						<button type="button" class="clearForm" onclick="qualClearForm()">Clear Form</button>
+					</div>
+					<br>
+				</div>
+
+			</div>
+		</form>
+
+		<script>
+		// ── Paste your TBA API key here ─────────────────────
+		const QUAL_TBA_KEY = "GAwCxK6FaW87ONKJU9QJBChxpvCRrozwpOThpzEraVe7NwaZ2sReFwCGnGg0yDWc";
+
+		let qualTeams = [];
+		let qualPage  = 0;
+		const QUAL_PAGES = ["qual-page1","qual-page2","qr-code"];
+
+		function qualShowPage(idx) {
+			QUAL_PAGES.forEach((id,i) => {
+				document.getElementById(id).style.display = (i===idx) ? "block" : "none";
+			});
+			qualPage = idx;
+			if (idx === 2) qualGenerateQR();
+		}
+		function qualNextPage() { qualShowPage(Math.min(qualPage+1, QUAL_PAGES.length-1)); }
+		function qualPrevPage() { qualShowPage(Math.max(qualPage-1, 0)); }
+
+		// ── TBA ─────────────────────────────────────────────
+		async function qualTbaFetch(path) {
+			const headers = QUAL_TBA_KEY ? {"X-TBA-Auth-Key": QUAL_TBA_KEY} : {};
+			const r = await fetch("https://www.thebluealliance.com/api/v3" + path, {headers});
+			if (!r.ok) throw new Error("TBA error " + r.status);
+			return r.json();
+		}
+
+		function qualSetStatus(msg, isError) {
+			const el = document.getElementById("qual-status");
+			el.textContent = msg;
+			el.style.color = isError ? "#ff6666" : "#88ee88";
+		}
+
+		async function qualLoadMatch() {
+			const event = document.getElementById("q-event").value.trim().toLowerCase();
+			const match = parseInt(document.getElementById("q-match").value);
+			if (!event || !match) { qualSetStatus("Enter event code and match number.", true); return; }
+			qualSetStatus("Loading from The Blue Alliance…", false);
+			try {
+				const data = await qualTbaFetch("/match/" + event + "_qm" + match);
+				qualTeams = [];
+				["red","blue"].forEach(color => {
+					data.alliances[color].team_keys.forEach((key,i) => {
+						qualTeams.push({number: key.replace("frc",""), name:"", alliance:color, pos:i+1});
+					});
+				});
+				try {
+					const evTeams = await qualTbaFetch("/event/" + event + "/teams/simple");
+					qualTeams.forEach(qt => {
+						const found = evTeams.find(e => "frc"+qt.number === e.key);
+						if (found) qt.name = found.nickname || "";
+					});
+				} catch(e) {}
+
+				qualRenderTeamsTable();
+				qualRenderTierSection();
+				document.getElementById("qual-teams-section").style.display = "block";
+				qualSetStatus("Loaded QM" + match + " — " + qualTeams.length + " teams.", false);
+			} catch(e) {
+				qualSetStatus("Could not load match. Check event code and match #.", true);
+			}
+		}
+
+		// ── Page 1: Team observation table ──────────────────
+		function qualRenderTeamsTable() {
+			const tbl = document.getElementById("qual-teams-table");
+			tbl.innerHTML = "";
+			qualTeams.forEach((team, idx) => {
+				if (idx > 0) {
+					const divRow = tbl.insertRow();
+					const dc = divRow.insertCell();
+					dc.colSpan = 2;
+					dc.innerHTML = "<hr class='qual-divider'>";
+				}
+				const hdrRow = tbl.insertRow();
+				const hdrCell = hdrRow.insertCell();
+				hdrCell.colSpan = 2;
+				hdrCell.className = "qual-team-header " + (team.alliance==="red" ? "qual-red" : "qual-blue");
+				hdrCell.innerHTML = team.alliance.charAt(0).toUpperCase()+team.alliance.slice(1)+" "+team.pos
+					+ " — <strong>"+team.number+"</strong>"
+					+ (team.name ? " · "+team.name : "");
+
+				const defRow = tbl.insertRow();
+				defRow.insertCell().innerHTML = "<span class='qual-label'>Defense</span>";
+				const defTd = defRow.insertCell();
+				["None","Poor","Fair","Good","Excellent"].forEach(v => {
+					defTd.innerHTML += `<label class="qual-radio"><input type="radio" name="qdef-${team.number}" value="${v}"> ${v}</label> `;
+				});
+
+				const shtRow = tbl.insertRow();
+				shtRow.insertCell().innerHTML = "<span class='qual-label'>Pass/Shoot</span>";
+				const shtTd = shtRow.insertCell();
+				["None","Weak","Average","Strong","Elite"].forEach(v => {
+					shtTd.innerHTML += `<label class="qual-radio"><input type="radio" name="qsht-${team.number}" value="${v}"> ${v}</label> `;
+				});
+
+				const cRow = tbl.insertRow();
+				cRow.insertCell().innerHTML = "<span class='qual-label'>Comments</span>";
+				cRow.insertCell().innerHTML = `<textarea id="qnotes-${team.number}" class="qual-textarea" rows="2" placeholder="Notes…"></textarea>`;
+			});
+		}
+
+		// ── Page 2: Tier + within-tier drag ranking ──────────
+		const TIERS = ["High","Mid-High","Mid-Low","Low","DNP"];
+
+		function qualGetTier(num) {
+			const el = document.querySelector(`input[name="qtier-${num}"]:checked`);
+			return el ? el.value : "";
+		}
+
+		function qualRenderTierSection() {
+			const div = document.getElementById("qual-tier-section");
+			div.innerHTML = "";
+
+			qualTeams.forEach(team => {
+				const row = document.createElement("div");
+				row.className = "qual-tier-row";
+
+				const label = document.createElement("span");
+				label.className = "qual-tier-team " + (team.alliance==="red" ? "qual-red" : "qual-blue");
+				label.textContent = team.number + (team.name ? " · "+team.name.slice(0,16) : "");
+				row.appendChild(label);
+
+				const pills = document.createElement("span");
+				pills.className = "qual-tier-pills";
+				TIERS.forEach(tier => {
+					const lbl = document.createElement("label");
+					lbl.className = "qual-tier-pill";
+					lbl.dataset.tier = tier;
+					const inp = document.createElement("input");
+					inp.type = "radio";
+					inp.name = "qtier-"+team.number;
+					inp.value = tier;
+					inp.addEventListener("change", qualRenderRankGroups);
+					lbl.appendChild(inp);
+					lbl.appendChild(document.createTextNode(tier));
+					pills.appendChild(lbl);
+				});
+				row.appendChild(pills);
+				div.appendChild(row);
+			});
+
+			const rankDiv = document.createElement("div");
+			rankDiv.id = "qual-rank-groups";
+			div.appendChild(rankDiv);
+		}
+
+		function qualRenderRankGroups() {
+			const div = document.getElementById("qual-rank-groups");
+
+			// Snapshot existing order before re-render
+			const prevOrder = {};
+			div.querySelectorAll(".qual-rank-list").forEach(list => {
+				prevOrder[list.dataset.tier] = Array.from(list.querySelectorAll(".qual-rank-item")).map(el=>el.dataset.num);
+			});
+
+			div.innerHTML = "";
+
+			const groups = {};
+			TIERS.forEach(t => groups[t] = []);
+			qualTeams.forEach(team => {
+				const tier = qualGetTier(team.number);
+				if (tier) groups[tier].push(team);
+			});
+
+			TIERS.forEach(tier => {
+				if (groups[tier].length < 2) return;
+
+				const section = document.createElement("div");
+				section.className = "qual-rank-group";
+
+				const heading = document.createElement("div");
+				heading.className = "qual-rank-group-label";
+				heading.textContent = tier + " — drag to rank (optional)";
+				section.appendChild(heading);
+
+				const list = document.createElement("ul");
+				list.className = "qual-rank-list";
+				list.dataset.tier = tier;
+
+				// Preserve prior drag order if available
+				let ordered = groups[tier];
+				if (prevOrder[tier]) {
+					const reordered = prevOrder[tier].map(n=>groups[tier].find(t=>t.number===n)).filter(Boolean);
+					const newOnes   = groups[tier].filter(t=>!prevOrder[tier].includes(t.number));
+					ordered = [...reordered, ...newOnes];
+				}
+
+				ordered.forEach(team => {
+					const li = document.createElement("li");
+					li.className = "qual-rank-item";
+					li.draggable = true;
+					li.dataset.num = team.number;
+					li.innerHTML = `<span class="qual-drag-handle">⠿</span> <strong>${team.number}</strong> <span class="qual-rank-name">${team.name||""}</span>`;
+					qualAddDragHandlers(li, list);
+					list.appendChild(li);
+				});
+
+				section.appendChild(list);
+				div.appendChild(section);
+			});
+		}
+
+		// ── Drag and drop (mouse + touch) ────────────────────
+		let qualDragSrc = null;
+
+		function qualAddDragHandlers(li, list) {
+			// Mouse
+			li.addEventListener("dragstart", e => {
+				qualDragSrc = li;
+				li.classList.add("qual-dragging");
+				e.dataTransfer.effectAllowed = "move";
+			});
+			li.addEventListener("dragend", () => {
+				li.classList.remove("qual-dragging");
+				list.querySelectorAll(".qual-rank-item").forEach(el => el.classList.remove("qual-drag-over"));
+			});
+			li.addEventListener("dragover", e => {
+				e.preventDefault();
+				if (li !== qualDragSrc) {
+					list.querySelectorAll(".qual-rank-item").forEach(el => el.classList.remove("qual-drag-over"));
+					li.classList.add("qual-drag-over");
+				}
+			});
+			li.addEventListener("drop", e => {
+				e.preventDefault();
+				if (qualDragSrc && qualDragSrc !== li) {
+					const items = Array.from(list.querySelectorAll(".qual-rank-item"));
+					const si = items.indexOf(qualDragSrc);
+					const di = items.indexOf(li);
+					if (si < di) list.insertBefore(qualDragSrc, li.nextSibling);
+					else         list.insertBefore(qualDragSrc, li);
+				}
+			});
+			// Touch
+			li.addEventListener("touchstart", e => {
+				qualDragSrc = li;
+				li.classList.add("qual-dragging");
+			}, {passive:true});
+			li.addEventListener("touchmove", e => {
+				const touch = e.touches[0];
+				const target = document.elementFromPoint(touch.clientX, touch.clientY)?.closest(".qual-rank-item");
+				list.querySelectorAll(".qual-rank-item").forEach(el => el.classList.remove("qual-drag-over"));
+				if (target && target !== qualDragSrc) target.classList.add("qual-drag-over");
+			}, {passive:true});
+			li.addEventListener("touchend", e => {
+				li.classList.remove("qual-dragging");
+				list.querySelectorAll(".qual-rank-item").forEach(el => el.classList.remove("qual-drag-over"));
+				const touch = e.changedTouches[0];
+				const target = document.elementFromPoint(touch.clientX, touch.clientY)?.closest(".qual-rank-item");
+				if (target && target !== qualDragSrc && target.closest("ul") === list) {
+					const items = Array.from(list.querySelectorAll(".qual-rank-item"));
+					const si = items.indexOf(qualDragSrc);
+					const di = items.indexOf(target);
+					if (si < di) list.insertBefore(qualDragSrc, target.nextSibling);
+					else         list.insertBefore(qualDragSrc, target);
+				}
+				qualDragSrc = null;
+			}, {passive:true});
+		}
+
+		// ── Data collection + QR ─────────────────────────────
+		function qualCollectData() {
+			const scouter = document.getElementById("q-scouter").value.trim();
+			const event   = document.getElementById("q-event").value.trim();
+			const match   = document.getElementById("q-match").value.trim();
+			let out = ["qs", scouter, event, match].join("\t");
+
+			qualTeams.forEach(t => {
+				const def   = (document.querySelector(`input[name="qdef-${t.number}"]:checked`)||{}).value||"";
+				const sht   = (document.querySelector(`input[name="qsht-${t.number}"]:checked`)||{}).value||"";
+				const tier  = qualGetTier(t.number);
+				const notes = (document.getElementById("qnotes-"+t.number)?.value||"").replace(/[\t\n\r]/g," ");
+				out += "\n" + [t.number, t.alliance[0].toUpperCase(), tier, def, sht, notes].join("\t");
+			});
+
+			document.querySelectorAll(".qual-rank-list").forEach(list => {
+				const tier  = list.dataset.tier;
+				const order = Array.from(list.querySelectorAll(".qual-rank-item")).map(el=>el.dataset.num).join(",");
+				out += "\nTIER_RANK\t" + tier + "\t" + order;
+			});
+
+			return out;
+		}
+
+		function qualGenerateQR() {
+			const container = document.getElementById("qrcode");
+			container.innerHTML = "";
+			try {
+				new QRCode(container, {
+					text: qualCollectData(),
+					width: 220, height: 220,
+					colorDark: "#000000", colorLight: "#ffffff",
+					correctLevel: QRCode.CorrectLevel.M
+				});
+			} catch(e) {
+				container.innerHTML = "<p style='color:red'>Data too long — shorten comments.</p>";
+			}
+		}
+
+		function qualDisplayData() {
+			const el = document.getElementById("data");
+			el.style.display = el.style.display==="block" ? "none" : "block";
+			el.textContent = qualCollectData();
+		}
+
+		function qualCopyData() {
+			navigator.clipboard.writeText(qualCollectData());
+			document.getElementById("copyButton").value = "Copied";
+		}
+
+		function qualClearForm() {
+			if (!confirm("Clear all qualitative scouting data?")) return;
+			["q-scouter","q-match"].forEach(id => document.getElementById(id).value="");
+			qualTeams = [];
+			document.getElementById("qual-teams-section").style.display = "none";
+			document.getElementById("qual-teams-table").innerHTML = "";
+			document.getElementById("qual-tier-section").innerHTML = "";
+			document.getElementById("qrcode").innerHTML = "";
+			document.getElementById("data").textContent = "";
+			document.getElementById("data").style.display = "none";
+			qualSetStatus("", false);
+			qualShowPage(0);
+		}
+		</script>
+	</body>
+</html>
