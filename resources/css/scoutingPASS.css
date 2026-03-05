@@ -417,11 +417,11 @@ input {
 
 /* Tier row */
 .qual-tier-row {
-    display: flex;
+    display: grid;
+    grid-template-columns: 140px repeat(5, 1fr);
     align-items: center;
-    gap: 8px;
-    margin-bottom: 8px;
-    flex-wrap: wrap;
+    gap: 4px;
+    margin-bottom: 6px;
 }
 
 .qual-tier-team {
@@ -431,12 +431,12 @@ input {
 }
 
 .qual-tier-pills {
-    display: flex;
-    gap: 4px;
-    flex-wrap: wrap;
+    display: contents; /* lets each pill sit directly in the grid */
 }
 
 .qual-tier-pill {
+    display: block;
+    text-align: center;
     padding: 4px 9px;
     border: 1px solid #888;
     border-radius: 4px;
