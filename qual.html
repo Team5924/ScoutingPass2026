@@ -7,6 +7,9 @@
 		<link rel="icon" sizes="16x16 32x32 64x64" href="favicon.ico">
 		<script src="resources/js/easy.qrcode.min.js"></script>
 		<link rel="stylesheet" href="resources/css/scoutingPASS.css">
+		<script src="resources/js/TBAInterface.js"></script>
+		<script src="resources/js/googleSheets.js"></script>
+		<script src="resources/js/scoutingPASS.js"></script>
 	</head>
 
 	<body>
@@ -89,14 +92,11 @@
 					</table>
 					<p></p>
 					<p class="match-label">
-						<input type="button" value="Display Data" id="displayButton" onclick="qualDisplayData()">
-						<input type="button" value="Copy Data" id="copyButton" onclick="qualCopyData()">
+						<input type="button" value="Display Data" id="displayButton" onclick="displayData()">
+						<input type="button" value="Copy Data" id="copyButton" onclick="copyData()">
 					</p>
 					<div id="submitButton">
 						<button id="submit" type="submit" class="submitForm">Send to Google Sheets</button>
-					</div>
-					<div id="submitButton">
-						<button id="submit" type="button" class="submitForm" onclick="qualSendToSheets()">Send to Google Sheets</button>
 					</div>
 					<div id="clearButton">
 						<button type="button" class="clearForm" onclick="qualClearForm()">Clear Form</button>
@@ -386,16 +386,16 @@
 			}
 		}
 
-		function qualDisplayData() {
-			const el = document.getElementById("data");
-			el.style.display = el.style.display==="block" ? "none" : "block";
-			el.textContent = qualCollectData();
-		}
+		// function qualDisplayData() {
+		// 	const el = document.getElementById("data");
+		// 	el.style.display = el.style.display==="block" ? "none" : "block";
+		// 	el.textContent = qualCollectData();
+		// }
 
-		function qualCopyData() {
-			navigator.clipboard.writeText(qualCollectData());
-			document.getElementById("copyButton").value = "Copied";
-		}
+		// function qualCopyData() {
+		// 	navigator.clipboard.writeText(qualCollectData());
+		// 	document.getElementById("copyButton").value = "Copied";
+		// }
 
 		function qualClearForm() {
 			if (!confirm("Clear all qualitative scouting data?")) return;
@@ -426,6 +426,9 @@
 			return qualCollectData();
 		}
 		var pitScouting = false;
+		var enableGoogleSheets = true;
+		var dataFormat = "tsv";
+
 		setUpGoogleSheets();
 		</script>
 		<script src="resources/js/googleSheets.js"></script>

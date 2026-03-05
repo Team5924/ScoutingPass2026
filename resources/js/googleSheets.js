@@ -6,36 +6,28 @@ function setUpGoogleSheets() {
     if (!form || !btn) return;
 
     form.addEventListener('submit', e => {
-        e.preventDefault()
-        btn.disabled = true
-        btn.innerHTML = "Sending..."
+      e.preventDefault()
+      btn.disabled = true
+      btn.innerHTML = "Sending..."
 
-        let fd;
-        if (typeof qualCollectData === 'function') {
-            fd = "QUAL\t" + qualCollectData();
-        } else if (typeof getData === 'function') {
-            fd = getData("tsv");
-            if (typeof pitScouting !== 'undefined' && pitScouting) {
-                fd = "PIT\t" + fd;
-            }
-        } else {
-            alert('No data function found.');
-            btn.disabled = false;
-            btn.innerHTML = "Send to Google Sheets";
-            return;
-        }
-        fetch(scriptURL, {
-            method: "POST",
-            mode: 'no-cors',
-            body: fd
-        })
-            .then(response => { 
-                alert('Yippee!', response) })
-            .catch(error => {
-                alert('Error!', error.message)})
+      let fd = getData("tsv");
+      if (pitScouting) {
+          fd = "PIT\t" + fd;
+      } else if (typeof qualCollectData === 'function') {
+          fd = "QUAL\t" + qualCollectData();
+      }
+      fetch(scriptURL, {
+        method: "POST",
+        mode: 'no-cors',
+        body: fd
+      })
+        .then(response => { 
+              alert('Yippee!', response) })
+        .catch(error => {
+              alert('Error!', error.message)})
 
-        btn.disabled = false
-        btn.innerHTML = "Send to Google Sheets"
+      btn.disabled = false
+      btn.innerHTML = "Send to Google Sheets"
     })
 }
 
