@@ -11,7 +11,9 @@ function setUpGoogleSheets() {
 
       let fd = getData("tsv");
       if (pitScouting) {
-        fd = "PIT\t" + fd;
+          fd = "PIT\t" + fd;
+      } else if (typeof qualCollectData === 'function') {
+          fd = "QUAL\t" + qualCollectData();
       }
       fetch(scriptURL, {
         method: "POST",
