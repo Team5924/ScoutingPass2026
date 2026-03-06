@@ -32,13 +32,13 @@ html, body{
 
 #auton_table, #endgame_table, #teleop_table {
     font-family : Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
-    color: black;
+    color: white;
     font-size: 13px;
     font-style: bold;
     font-weight: 700;
     letter-spacing: 1px;
     border-width: 4px;
-    border-color: black;
+    border-color: white;
 }
 
 
