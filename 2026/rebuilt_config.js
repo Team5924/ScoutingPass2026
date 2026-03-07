@@ -15,7 +15,7 @@ var config_data = `
     { "name": "Event",
       "code": "e",
       "type": "event",
-      "defaultValue": "2025casf",
+      "defaultValue": "2026cahal",
       "required": "true"
     },
     { "name": "Match Level",
