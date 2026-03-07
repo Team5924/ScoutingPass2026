@@ -451,7 +451,7 @@ function addClickableImage(table, idx, name, data) {
   cell = row.insertCell(0);
   cell.setAttribute("colspan", 2);
   var img = document.createElement('img');
-  img.src = getFieldImage(data.filename);
+  img.src = data.filename;
   img.setAttribute("id", "img_" + data.code);
   img.setAttribute("class", "field-image-src");
   img.setAttribute("onload", "drawFields()");
@@ -459,19 +459,6 @@ function addClickableImage(table, idx, name, data) {
   cell.appendChild(img);
 
   return idx + 1
-}
-
-function getFieldImage(filename) {
-    const robot = document.getElementById("input_r");
-    if (!robot) return filename;
-    const val = robot.value;
-    const isRed = val === "r1" || val === "r2" || val === "r3";
-    
-    // Swap the filename based on alliance
-    if (filename.includes("half_field")) {
-        return isRed ? "2026/half_field_red.png" : "2026/half_field_blue.png";
-    }
-    return filename;
 }
 
 function addText(table, idx, name, data) {
